@@ -15,3 +15,8 @@ This app runs the prebuilt image from
 [steiner-dominik/tesla-invoices](https://github.com/steiner-dominik/tesla-invoices),
 where the application is developed — it can also run standalone via Docker on
 any server.
+
+❤️ If this app is useful to you, you can support its development via
+[GitHub Sponsors](https://github.com/sponsors/steiner-dominik),
+[Ko-fi](https://ko-fi.com/dominik_steiner), or
+[Buy Me a Coffee](https://buymeacoffee.com/dominik.st).

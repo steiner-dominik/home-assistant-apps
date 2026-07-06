@@ -128,3 +128,10 @@ pre-filled with `email.to` — manual sends only require `mailserver` and
   container. Tokens from the app options are only used if they are newer.
   To switch to a different Tesla account, simply configure freshly generated
   tokens — being newer, they win over the stored ones automatically.
+
+## Support the project
+
+If this app is useful to you, you can support its development via
+[GitHub Sponsors](https://github.com/sponsors/steiner-dominik),
+[Ko-fi](https://ko-fi.com/dominik_steiner), or
+[Buy Me a Coffee](https://buymeacoffee.com/dominik.st).

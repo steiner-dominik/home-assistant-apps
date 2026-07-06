@@ -2,6 +2,10 @@
 
 [![Open app repo on your Home Assistant instance][repo-badge]][repo-link]
 
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-%E2%9D%A4-EA4AAA?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/steiner-dominik)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-donate-FF5E5B?logo=kofi&logoColor=white)](https://ko-fi.com/dominik_steiner)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/dominik.st)
+
 A [Home Assistant app repository](https://www.home-assistant.io/common-tasks/os#installing-a-third-party-app-repository)
 maintained by Dominik Steiner.
 
@@ -35,6 +39,14 @@ Found a bug or have a feature request?
 
 - **App behavior, dashboard, downloads** → [tesla-invoices issues](https://github.com/steiner-dominik/tesla-invoices/issues)
 - **Installation, app options, ingress** → [this repository's issues](https://github.com/steiner-dominik/home-assistant-apps/issues)
+
+## ❤️ Support the project
+
+If these apps are useful to you, you can support their development:
+
+- [GitHub Sponsors](https://github.com/sponsors/steiner-dominik)
+- [Ko-fi](https://ko-fi.com/dominik_steiner)
+- [Buy Me a Coffee](https://buymeacoffee.com/dominik.st)
 
 ## ⚖️ Disclaimer
 
