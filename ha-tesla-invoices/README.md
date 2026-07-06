@@ -2,6 +2,9 @@
 
 **Automatically download all your Tesla charging & subscription invoices — and actually understand them.**
 
+> ⚠️ **This is an independent community project. It is not affiliated with,
+> endorsed by, or supported by Tesla, Inc. in any way.**
+
 - 📥 Fetches every Supercharging and subscription invoice from your Tesla account
 - 📊 Analytics dashboard via ingress: monthly kWh/cost charts, price per kWh,
   filtering, search, built-in PDF viewer

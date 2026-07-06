@@ -1,14 +1,19 @@
 # Home Assistant App: Tesla Invoices
 
+> ⚠️ **This is an independent community project. It is not affiliated with,
+> endorsed by, or supported by Tesla, Inc. in any way.**
+
 ## Requirements
 
-To use this app, you need a Tesla `access_token` and `refresh_token`,
-generated with one of these applications:
+To use this app, you need a Tesla **refresh token**, generated with one of
+these applications:
 
-- Android: [Tesla Tokens](https://play.google.com/store/apps/details?id=net.leveugle.teslatokens)
-- iOS: [Auth App for Tesla](https://apps.apple.com/us/app/auth-app-for-tesla/id1552058613)
-- TeslaFi: [Tesla v3 API Tokens](https://support.teslafi.com/en/communities/1/topics/16979-tesla-v3-api-tokens)
-- Chromium/Edge: [Chromium Tesla Token Generator](https://github.com/DoctorMcKay/chromium-tesla-token-generator)
+- Windows / macOS / Linux: [tesla_auth](https://github.com/adriankumpf/tesla_auth) (recommended)
+- iOS: [Auth app for Tesla](https://apps.apple.com/us/app/auth-app-for-tesla/id1552058613)
+
+> 🔒 **Treat the token like a password** — it grants full access to your
+> Tesla account. That is all the app needs: access tokens are obtained,
+> renewed and stored automatically.
 
 ## Installation
 
@@ -20,7 +25,7 @@ generated with one of these applications:
    **Settings → Apps → App Store → ⋮ → Repositories**.
 
 2. Install the "Tesla Invoices" app.
-3. Configure at least `refresh_token` (see [Requirements](#requirements)).
+3. Configure `refresh_token` (see [Requirements](#requirements)).
 4. Start the app.
 
 [repo-link]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fsteiner-dominik%2Fhome-assistant-apps
@@ -29,7 +34,6 @@ generated with one of these applications:
 ## Configuration
 
 ```yaml
-access_token: ""
 refresh_token: ""
 polling_interval: 15
 default_currency: ""
@@ -44,17 +48,21 @@ email:
   password: ""
 ```
 
-### Option: `access_token` (optional)
-
-The access token retrieved from one of the authentication apps (see
-[Requirements](#requirements)). It can be left empty: with only a
-`refresh_token` configured, the app obtains a fresh access token on its
-own. Either way it refreshes and stores its own tokens after the first start.
-
 ### Option: `refresh_token` (required)
 
 The refresh token retrieved from one of the authentication apps (see
-[Requirements](#requirements)).
+[Requirements](#requirements)). This is the only credential the app needs —
+access tokens are obtained from it automatically, renewed before they expire,
+and stored in the app's private `/data` directory.
+
+> ℹ️ Earlier versions also had an `access_token` option; it was never needed
+> and has been removed. If the app reports an invalid `access_token` option
+> after updating, remove that line from the configuration
+> (*Configuration → three-dot menu → Edit in YAML*).
+>
+> The [standalone Docker deployment](https://github.com/steiner-dominik/tesla-invoices)
+> still accepts an access token as an alternative for users who prefer not to
+> store a long-lived credential.
 
 ### Option: `polling_interval`
 
@@ -117,6 +125,9 @@ pre-filled with `email.to` — manual sends only require `mailserver` and
 
 - The app checks for new invoices of the current and previous month on every
   polling interval.
+- Timestamps in the log and the month boundaries of the sync window
+  automatically use the **time zone configured in Home Assistant** — no
+  setup needed.
 - Open the app's **web UI** (ingress) to see the analytics dashboard with
   monthly energy/cost charts, filter and search invoices, view or download
   the PDFs, and export everything as CSV.
@@ -124,10 +135,11 @@ pre-filled with `email.to` — manual sends only require `mailserver` and
   on the **Maintenance** tab. A specific month can also be fetched via the
   API: `POST api/sync?month=2025-11` (relative to the ingress URL; also
   `all`, `cur`, `prev`).
-- `refresh_token` and `access_token` are stored inside `/data/` in the
-  container. Tokens from the app options are only used if they are newer.
-  To switch to a different Tesla account, simply configure freshly generated
-  tokens — being newer, they win over the stored ones automatically.
+- The refresh token (and the automatically obtained access token) are stored
+  inside `/data/` in the container. The token from the app options is only
+  used when it is newer than the stored one. To switch to a different Tesla
+  account, simply configure a freshly generated refresh token — being newer,
+  it wins over the stored one automatically.
 
 ## Support the project
 
@@ -135,3 +147,11 @@ If this app is useful to you, you can support its development via
 [GitHub Sponsors](https://github.com/sponsors/steiner-dominik),
 [Ko-fi](https://ko-fi.com/dominik_steiner), or
 [Buy Me a Coffee](https://buymeacoffee.com/dominik.st).
+
+## Disclaimer
+
+**This project is not affiliated with, endorsed by, sponsored by, or in any
+way officially connected to Tesla, Inc.** or any of its subsidiaries. All
+product names, trademarks and registered trademarks are property of their
+respective owners. This software is provided "as is" and without any
+warranty; use at your own risk.

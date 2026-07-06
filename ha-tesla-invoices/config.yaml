@@ -1,6 +1,6 @@
 name: "Tesla Invoices"
 description: "Download Tesla charging and subscription invoices, with analytics dashboard and email export"
-version: "2026.07.01"
+version: "2026.07.02"
 slug: "tesla_invoices"
 url: "https://github.com/steiner-dominik/home-assistant-apps"
 # Prebuilt multi-arch image, published from the application source repo
@@ -10,6 +10,9 @@ image: "ghcr.io/steiner-dominik/tesla-invoices"
 init: false
 ingress: true
 ingress_port: 9000
+# Lets the app read the Home Assistant time zone from the Supervisor API
+# so timestamps and sync windows match local time.
+hassio_api: true
 panel_icon: mdi:file-document-multiple
 panel_title: Tesla Invoices
 watchdog: http://[HOST]:[PORT:9000]/health
@@ -18,7 +21,6 @@ arch:
   - aarch64
   - amd64
 options:
-  access_token: ""
   refresh_token: ""
   polling_interval: 15
   default_currency: ""
@@ -32,7 +34,6 @@ options:
     user: ""
     password: ""
 schema:
-  access_token: password
   refresh_token: password
   polling_interval: int(1,1440)
   default_currency: match(^([A-Za-z]{3})?$)?

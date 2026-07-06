@@ -1,4 +1,29 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.07.02
+
+- **Uses your Home Assistant time zone**: log timestamps and the
+  current/previous-month sync window now follow the time zone configured in
+  Home Assistant (read from the Supervisor at startup) instead of UTC.
+- **`access_token` option removed**: it was never needed — the refresh token
+  is the only credential required; access tokens are obtained, renewed and
+  stored automatically. ⚠️ If the app reports an invalid `access_token`
+  option after updating, remove that line via
+  *Configuration → three-dot menu → Edit in YAML*. (The
+  [standalone Docker deployment](https://github.com/steiner-dominik/tesla-invoices)
+  still accepts an access token as an alternative for users who prefer not
+  to store a long-lived credential.)
+- **Clearer logs, no sensitive data**: log messages have been rewritten in
+  plain language ("Starting invoice sync…", "Invoice sync finished", …), and
+  email addresses, full VINs and raw Tesla API responses are no longer
+  logged — logs can be shared in bug reports safely. Tokens were never
+  logged.
+- **Working token generator links**: the documentation now points to
+  [tesla_auth](https://github.com/adriankumpf/tesla_auth) and
+  [Auth app for Tesla](https://apps.apple.com/us/app/auth-app-for-tesla/id1552058613)
+  (iOS); the previously listed tools are outdated or gone.
+- Clarified in the documentation and dashboard footer that this project is
+  **not affiliated with Tesla, Inc.**
+
 ## 2026.07.01
 
 First public release. Tesla Invoices started as an interactive CLI script,

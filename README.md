@@ -50,9 +50,15 @@ If these apps are useful to you, you can support their development:
 
 ## ⚖️ Disclaimer
 
+The apps in this repository are independent community projects. They are
+**not affiliated with, endorsed by, sponsored by, or in any way officially
+connected to any third party whose services they interact with — in
+particular not with Tesla, Inc.** or any of its subsidiaries. All product
+names, trademarks and registered trademarks are property of their respective
+owners.
+
 This software is provided “as is” and without any warranty. Use at your own
-risk. The apps here are not affiliated with or endorsed by any third party
-whose services they interact with.
+risk.
 
 [repo-badge]: https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg
 [repo-link]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fsteiner-dominik%2Fhome-assistant-apps
