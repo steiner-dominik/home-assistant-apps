@@ -1,0 +1,32 @@
+configuration:
+  access_token:
+    name: Access token
+    description: >-
+      Tesla access token, generated with one of the token apps listed in the
+      documentation. Optional — with only a refresh token configured, a fresh
+      access token is obtained automatically.
+  refresh_token:
+    name: Refresh token
+    description: >-
+      Tesla refresh token, generated with one of the token apps listed in the
+      documentation.
+  polling_interval:
+    name: Polling interval
+    description: How often (in minutes) to check for new invoices.
+  default_currency:
+    name: Default currency
+    description: >-
+      Three-letter currency code (e.g. EUR, USD) preferred in the dashboard
+      when invoices exist in several currencies. Leave empty to auto-detect.
+      Costs are never converted between currencies.
+  enable_email_export:
+    name: Enable email export
+    description: Send every newly downloaded invoice as an email attachment.
+  enable_subscription_invoice:
+    name: Download subscription invoices
+    description: Also download subscription (e.g. Premium Connectivity) invoices.
+  email:
+    name: Email settings
+    description: >-
+      SMTP settings for email export (from, to, mailserver, port, user,
+      password). Required if email export is enabled.
