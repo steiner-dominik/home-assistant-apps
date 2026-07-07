@@ -79,7 +79,20 @@ between currencies — the dashboard shows per-currency totals instead.
 
 Set to `true` to send every newly downloaded invoice as an email attachment.
 Each invoice is sent exactly once; the sent state is stored in the invoice's
-metadata file.
+metadata file. The email contains a summary of the invoice (date, type,
+vehicle, amount) in the body.
+
+To avoid flooding your inbox, the export never sends a backlog:
+
+- Invoices synced **while the export was disabled** are marked as *skipped* —
+  enabling the export later only emails invoices that are new from that
+  point on.
+- A manual **Sync all history** does not email each found invoice either,
+  unless you tick the corresponding checkbox on the Maintenance tab; without
+  it, the found invoices are marked as *skipped*.
+- Skipped invoices can be sent at any time via **Maintenance → Email
+  backlog**, combined into a few emails (batched by size) instead of one
+  mail per invoice.
 
 ### Option: `enable_subscription_invoice`
 
@@ -131,6 +144,10 @@ pre-filled with `email.to` — manual sends only require `mailserver` and
 - Open the app's **web UI** (ingress) to see the analytics dashboard with
   monthly energy/cost charts, filter and search invoices, view or download
   the PDFs, and export everything as CSV.
+- The dashboard follows your system's light/dark appearance automatically;
+  the **Auto / Light / Dark** switch in the top-right corner overrides it.
+- All timestamps are shown as `YYYY-MM-DD HH:MM` (24-hour clock) with the
+  time zone.
 - To download your **complete invoice history**, click **"Sync all history"**
   on the **Maintenance** tab. A specific month can also be fetched via the
   API: `POST api/sync?month=2025-11` (relative to the ingress URL; also

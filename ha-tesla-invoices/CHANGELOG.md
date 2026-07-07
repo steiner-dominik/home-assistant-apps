@@ -1,4 +1,24 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.07.03
+
+- **Dark mode**: the dashboard now follows the Home Assistant / system
+  appearance automatically, with an **Auto / Light / Dark** switch in the
+  top-right corner to override it (the choice is remembered).
+- **Unified timestamps**: all timestamps in the dashboard are now shown as
+  `YYYY-MM-DD HH:MM` (24-hour clock) including the time zone.
+- **Email export no longer floods your inbox**:
+  - Invoices synced while email export was disabled are marked as *skipped*
+    and are never auto-sent later — enabling the export only emails invoices
+    that are new from that point on.
+  - **Sync all history** now skips email sending by default; a new checkbox
+    on the Maintenance tab lets you opt in explicitly.
+  - New **Maintenance → Email backlog** section: sends all skipped invoices
+    as a **combined export**, batched into a few emails instead of one mail
+    per invoice.
+- **Nicer emails**: exported invoices now have a proper text body with an
+  invoice summary (date, type, vehicle, location, energy, amount) and a
+  meaningful subject line instead of a bare attachment.
+
 ## 2026.07.02
 
 - **Uses your Home Assistant time zone**: log timestamps and the

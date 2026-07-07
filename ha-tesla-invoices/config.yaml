@@ -1,6 +1,6 @@
 name: "Tesla Invoices"
 description: "Download Tesla charging and subscription invoices, with analytics dashboard and email export"
-version: "2026.07.02"
+version: "2026.07.03"
 slug: "tesla_invoices"
 url: "https://github.com/steiner-dominik/home-assistant-apps"
 # Prebuilt multi-arch image, published from the application source repo

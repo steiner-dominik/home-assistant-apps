@@ -16,7 +16,11 @@ configuration:
       Costs are never converted between currencies.
   enable_email_export:
     name: Enable email export
-    description: Send every newly downloaded invoice as an email attachment.
+    description: >-
+      Send every newly downloaded invoice as an email attachment. Invoices
+      synced while this was disabled are never sent automatically (no mail
+      flood after enabling) — send them combined via Maintenance → Email
+      backlog in the web UI.
   enable_subscription_invoice:
     name: Download subscription invoices
     description: Also download subscription (e.g. Premium Connectivity) invoices.
