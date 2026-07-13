@@ -1,4 +1,22 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.07.04
+
+- **Aligned chart timelines**: the *Energy per month* and *Cost per month*
+  charts now share one x-axis range, so the two timelines line up instead of
+  each chart starting at its own first data point. Months without data show
+  a thin faded **0 bar** instead of an invisible gap.
+- **Bulk ZIP download**: a new **Download all (ZIP)** button next to
+  *Export CSV* downloads every stored invoice PDF as one ZIP archive.
+- **Sync all history asks about emails**: instead of a separate checkbox on
+  the Maintenance tab, starting a full history sync now asks directly
+  whether each new invoice should also be emailed (default: no — invoices
+  are marked as *skipped* and can be sent later via *Email backlog*). The
+  question only appears when the automatic email export is enabled.
+- **Quieter add-on log**: HTTP requests are no longer logged one line each —
+  the Supervisor watchdog polls `/health` constantly and drowned the log.
+  Syncs, downloads and emails are still logged.
+- **Dependency updates**: `pypdf` 5.1.0 → 6.14.2 and `uvicorn` 0.50.0 → 0.51.0.
+
 ## 2026.07.03
 
 - **Dark mode**: the dashboard now follows the Home Assistant / system

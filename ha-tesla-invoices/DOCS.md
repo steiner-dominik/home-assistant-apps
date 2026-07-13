@@ -88,8 +88,8 @@ To avoid flooding your inbox, the export never sends a backlog:
   enabling the export later only emails invoices that are new from that
   point on.
 - A manual **Sync all history** does not email each found invoice either,
-  unless you tick the corresponding checkbox on the Maintenance tab; without
-  it, the found invoices are marked as *skipped*.
+  unless you explicitly answer yes when asked while starting it (the default
+  is no); otherwise the found invoices are marked as *skipped*.
 - Skipped invoices can be sent at any time via **Maintenance → Email
   backlog**, combined into a few emails (batched by size) instead of one
   mail per invoice.
