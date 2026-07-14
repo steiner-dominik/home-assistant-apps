@@ -1,0 +1,38 @@
+name: Check image tag
+
+# The Supervisor pulls <image>:<version> from config.yaml, so a version bump
+# with no matching published image tag bricks the app update for every user.
+# This check fails until the tesla-invoices release (which publishes the
+# image) exists — publish the release FIRST, then merge the version bump here.
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  image-tag-exists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Verify the config.yaml version has a published GHCR image
+        run: |
+          set -eu
+          version=$(sed -n 's/^version: *"\(.*\)".*/\1/p' ha-tesla-invoices/config.yaml)
+          image=$(sed -n 's/^image: *"\(.*\)".*/\1/p' ha-tesla-invoices/config.yaml)
+          repo=${image#ghcr.io/}
+          echo "Checking ghcr.io/${repo}:${version}"
+          # Anonymous pull token works for public GHCR images
+          token=$(curl -fsSL "https://ghcr.io/token?scope=repository:${repo}:pull" | jq -r .token)
+          if ! curl -fsSL -o /dev/null \
+              -H "Authorization: Bearer ${token}" \
+              -H "Accept: application/vnd.oci.image.index.v1+json" \
+              -H "Accept: application/vnd.docker.distribution.manifest.list.v2+json" \
+              -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+              "https://ghcr.io/v2/${repo}/manifests/${version}"; then
+            echo "::error file=ha-tesla-invoices/config.yaml::No image ghcr.io/${repo}:${version} published yet — publish the tesla-invoices release first, then merge this bump."
+            exit 1
+          fi
+          echo "OK: image tag ${version} exists"

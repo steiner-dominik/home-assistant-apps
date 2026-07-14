@@ -48,6 +48,10 @@ If these apps are useful to you, you can support their development:
 - [Ko-fi](https://ko-fi.com/dominik_steiner)
 - [Buy Me a Coffee](https://buymeacoffee.com/dominik.st)
 
+## 📄 License
+
+[MIT](LICENSE)
+
 ## ⚖️ Disclaimer
 
 The apps in this repository are independent community projects. They are

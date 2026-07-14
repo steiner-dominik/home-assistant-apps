@@ -151,7 +151,9 @@ pre-filled with `email.to` — manual sends only require `mailserver` and
 - To download your **complete invoice history**, click **"Sync all history"**
   on the **Maintenance** tab. A specific month can also be fetched via the
   API: `POST api/sync?month=2025-11` (relative to the ingress URL; also
-  `all`, `cur`, `prev`).
+  `all`, `cur`, `prev`). API calls that change state (`POST`/`DELETE`) must
+  send an `X-Requested-With` header (any value) — requests without it are
+  rejected to block cross-site request forgery.
 - The refresh token (and the automatically obtained access token) are stored
   inside `/data/` in the container. The token from the app options is only
   used when it is newer than the stored one. To switch to a different Tesla

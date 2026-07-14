@@ -1,4 +1,31 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.07.05
+
+Security- and robustness-focused release, following an external code review.
+
+- **Multi-vehicle fix**: the charging history is now requested strictly per
+  vehicle. Previously, accounts with several vehicles could download every
+  invoice once per vehicle, filed under the wrong VIN.
+- **Security hardening**: all state-changing API endpoints are protected
+  against cross-site request forgery; email recipients no longer appear in
+  URLs; SMTP certificate verification is explicit; the container drops root
+  before starting the app; downloaded files are verified to really be PDFs.
+- **In-page dialogs** replace browser popups, which could silently fail in
+  the Home Assistant companion apps and make buttons (Sync, Email, Delete)
+  appear dead.
+- **No more duplicate emails after crashes**: metadata is written atomically
+  and the PDF re-scan no longer runs concurrently with a sync.
+- **ZIP export streams from disk** — no more out-of-memory risk on small
+  boxes with a large invoice history.
+- Deleting a PDF in the Files tab now removes its metadata entry too; the
+  skipped-invoice counter ignores orphaned metadata; date-only invoices no
+  longer show a made-up "00:00" time; background polling pauses in hidden
+  tabs.
+- Amount parsing: English-format totals without decimals (`1,234`) are no
+  longer misread as `1.234`.
+- The app now ships an icon, and the project is licensed under the
+  **MIT License**.
+
 ## 2026.07.04
 
 - **Aligned chart timelines**: the *Energy per month* and *Cost per month*
