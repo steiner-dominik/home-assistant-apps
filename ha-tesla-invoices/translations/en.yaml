@@ -2,9 +2,9 @@ configuration:
   refresh_token:
     name: Refresh token
     description: >-
-      Tesla refresh token, generated with one of the token apps listed in the
-      documentation. Access tokens are obtained and renewed automatically —
-      this is the only credential the app needs.
+      Optional. Usually not needed — click "Connect Tesla account" in the web
+      UI to sign in instead. If set, this Tesla refresh token pre-fills the
+      credential; access tokens are then obtained and renewed automatically.
   polling_interval:
     name: Polling interval
     description: How often (in minutes) to check for new invoices.

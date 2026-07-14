@@ -1,4 +1,21 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.07.06
+
+- **Sign in from the dashboard — no configuration needed**: just start the
+  app, open the web UI, and click **Connect Tesla account**. You sign in on
+  Tesla's own website (this app never sees your password), and the first sync
+  starts automatically. The `refresh_token` option is now optional — set it
+  only if you prefer to bring your own token; a token obtained via the in-app
+  login takes precedence once present.
+- A **Tesla account** section on the Maintenance tab shows the connection
+  status and lets you reconnect (e.g. to switch accounts).
+- **German translation**: the dashboard is now available in English and
+  German, including all dialogs, statuses and number/month formatting.
+- **Follows your Home Assistant language automatically** (read from the Core
+  API at startup — the app now requests the `homeassistant_api` permission
+  for this). The new **EN / DE** switch in the top-right corner, next to the
+  theme toggle, overrides it (remembered per browser).
+
 ## 2026.07.05
 
 Security- and robustness-focused release, following an external code review.

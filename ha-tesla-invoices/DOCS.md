@@ -3,18 +3,6 @@
 > ⚠️ **This is an independent community project. It is not affiliated with,
 > endorsed by, or supported by Tesla, Inc. in any way.**
 
-## Requirements
-
-To use this app, you need a Tesla **refresh token**, generated with one of
-these applications:
-
-- Windows / macOS / Linux: [tesla_auth](https://github.com/adriankumpf/tesla_auth) (recommended)
-- iOS: [Auth app for Tesla](https://apps.apple.com/us/app/auth-app-for-tesla/id1552058613)
-
-> 🔒 **Treat the token like a password** — it grants full access to your
-> Tesla account. That is all the app needs: access tokens are obtained,
-> renewed and stored automatically.
-
 ## Installation
 
 1. Add this app repository to Home Assistant:
@@ -25,13 +13,38 @@ these applications:
    **Settings → Apps → App Store → ⋮ → Repositories**.
 
 2. Install the "Tesla Invoices" app.
-3. Configure `refresh_token` (see [Requirements](#requirements)).
-4. Start the app.
+3. **Start the app** — no configuration required.
+4. Open the app's web UI (**Open Web UI**) and click **Connect Tesla
+   account**. You sign in on Tesla's own website; only the resulting token is
+   stored, and the first sync starts automatically.
 
 [repo-link]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fsteiner-dominik%2Fhome-assistant-apps
 [repo-btn]: https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg
 
+## Signing in
+
+The app needs access to your Tesla account to download invoices. The easiest
+way is to **Connect Tesla account** in the dashboard:
+
+- You are sent to Tesla's own login page (this app never sees your password).
+- You may be asked to solve a security check — that is Tesla's, not the app's.
+- After signing in, Tesla shows a "Page Not Found" page. Copy that page's full
+  web address and paste it back into the app; it exchanges it for a token,
+  stores the token in the app's private `/data` directory, and starts syncing.
+
+> 🔒 **The stored token grants access to your Tesla account** — keep backups of
+> `/data` private. Access tokens are obtained from the refresh token
+> automatically, renewed before they expire, and stored alongside it.
+
+Prefer to bring your own token? You can still set the optional `refresh_token`
+option below (e.g. one generated with
+[tesla_auth](https://github.com/adriankumpf/tesla_auth) or the iOS
+[Auth app for Tesla](https://apps.apple.com/us/app/auth-app-for-tesla/id1552058613));
+a token obtained via the in-app login always takes precedence once present.
+
 ## Configuration
+
+All options are **optional** — the app runs and you sign in from the dashboard.
 
 ```yaml
 refresh_token: ""
@@ -48,12 +61,12 @@ email:
   password: ""
 ```
 
-### Option: `refresh_token` (required)
+### Option: `refresh_token` (optional)
 
-The refresh token retrieved from one of the authentication apps (see
-[Requirements](#requirements)). This is the only credential the app needs —
-access tokens are obtained from it automatically, renewed before they expire,
-and stored in the app's private `/data` directory.
+An optional Tesla refresh token. Usually you don't set this — use **Connect
+Tesla account** in the dashboard instead. If you do provide one, it pre-fills
+the credential; access tokens are then obtained from it automatically, renewed
+before they expire, and stored in the app's private `/data` directory.
 
 > ℹ️ Earlier versions also had an `access_token` option; it was never needed
 > and has been removed. If the app reports an invalid `access_token` option
@@ -146,6 +159,9 @@ pre-filled with `email.to` — manual sends only require `mailserver` and
   the PDFs, and export everything as CSV.
 - The dashboard follows your system's light/dark appearance automatically;
   the **Auto / Light / Dark** switch in the top-right corner overrides it.
+- The dashboard is available in **English and German** and defaults to the
+  language configured in Home Assistant — the **EN / DE** switch in the
+  top-right corner overrides it (remembered per browser).
 - All timestamps are shown as `YYYY-MM-DD HH:MM` (24-hour clock) with the
   time zone.
 - To download your **complete invoice history**, click **"Sync all history"**
