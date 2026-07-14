@@ -28,9 +28,11 @@ way is to **Connect Tesla account** in the dashboard:
 
 - You are sent to Tesla's own login page (this app never sees your password).
 - You may be asked to solve a security check — that is Tesla's, not the app's.
-- After signing in, Tesla shows a "Page Not Found" page. Copy that page's full
-  web address and paste it back into the app; it exchanges it for a token,
-  stores the token in the app's private `/data` directory, and starts syncing.
+- After signing in, the browser tries to open the Tesla app and shows an error
+  or an empty page instead — that is expected. Copy the full web address from
+  the address bar (it starts with `tesla://auth/callback`) and paste it back
+  into the app; it exchanges it for a token, stores the token in the app's
+  private `/data` directory, and starts syncing.
 
 > 🔒 **The stored token grants access to your Tesla account** — keep backups of
 > `/data` private. Access tokens are obtained from the refresh token
