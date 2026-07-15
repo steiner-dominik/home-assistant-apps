@@ -53,6 +53,7 @@ refresh_token: ""
 polling_interval: 15
 default_currency: ""
 enable_email_export: false
+enable_charging_invoice: true
 enable_subscription_invoice: true
 email:
   from: sender_mail@example.com
@@ -109,10 +110,20 @@ To avoid flooding your inbox, the export never sends a backlog:
   backlog**, combined into a few emails (batched by size) instead of one
   mail per invoice.
 
+### Option: `enable_charging_invoice`
+
+Set to `true` (default) to download charging (Supercharging) invoices. Disable
+it if you only want subscription invoices.
+
 ### Option: `enable_subscription_invoice`
 
 Set to `true` (default) to also download subscription invoices (e.g. Premium
 Connectivity).
+
+> ℹ️ Disabling **both** invoice types is allowed and pauses all downloads:
+> syncs then only verify the Tesla connection (keeping the token fresh), and
+> the dashboard shows a banner that nothing will be downloaded. Re-enable at
+> least one type to resume.
 
 ### Option: `email` (required if `enable_email_export` is set)
 

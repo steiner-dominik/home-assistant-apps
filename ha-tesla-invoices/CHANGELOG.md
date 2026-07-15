@@ -1,4 +1,27 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.07.08
+
+- **Easier Tesla login**: the *Connect Tesla account* dialog now walks you
+  through the sign-in with clear numbered steps, including a hint for desktop
+  browsers where the `tesla://auth/callback` address never reaches the
+  address bar. New fallback: **paste a refresh token directly** (e.g. from
+  tesla_auth or the iOS "Auth app for Tesla") — the token is verified with
+  Tesla before it is stored.
+- **New option `enable_charging_invoice`** (default: `true`): disable it if
+  you only want subscription invoices downloaded. Enable none, one, or both
+  invoice types — with both disabled, downloads are paused and syncs only
+  verify the Tesla connection (the dashboard shows a banner).
+- **Correct month assignment across timezone boundaries**: charging sessions
+  are now bucketed by the local date instead of UTC, so invoices around
+  midnight at a month boundary are no longer missed or wrongly grouped.
+- **Email export robustness**: one unreadable PDF no longer aborts the export
+  loop, and overlapping send operations can no longer email an invoice twice.
+- **Invoices readable on shared volumes**: downloaded PDFs and metadata are
+  written world-readable (`0644`), so SMB shares of the invoice directory
+  work; token files stay private.
+- **Dashboard translations are now contributable**: languages live in plain
+  JSON files — see the application repository's README for how to add one.
+
 ## 2026.07.07
 
 Two fixes for the in-app Tesla login introduced in 2026.07.06:

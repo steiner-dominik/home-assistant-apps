@@ -21,6 +21,12 @@ configuration:
       synced while this was disabled are never sent automatically (no mail
       flood after enabling) — send them combined via Maintenance → Email
       backlog in the web UI.
+  enable_charging_invoice:
+    name: Download charging invoices
+    description: >-
+      Download Supercharging invoices. Disable this if you only want
+      subscription invoices. Disabling both invoice types pauses all
+      downloads — syncs then only verify the Tesla connection.
   enable_subscription_invoice:
     name: Download subscription invoices
     description: Also download subscription (e.g. Premium Connectivity) invoices.

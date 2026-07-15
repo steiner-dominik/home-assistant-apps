@@ -1,6 +1,6 @@
 name: "Tesla Invoices"
 description: "Download Tesla charging and subscription invoices, with analytics dashboard and email export"
-version: "2026.07.07"
+version: "2026.07.08"
 slug: "tesla_invoices"
 url: "https://github.com/steiner-dominik/home-assistant-apps"
 # Prebuilt multi-arch image, published from the application source repo
@@ -28,6 +28,7 @@ options:
   polling_interval: 15
   default_currency: ""
   enable_email_export: false
+  enable_charging_invoice: true
   enable_subscription_invoice: true
   email:
     from: "sender_mail@example.com"
@@ -41,6 +42,7 @@ schema:
   polling_interval: int(1,1440)
   default_currency: match(^([A-Za-z]{3})?$)?
   enable_email_export: bool
+  enable_charging_invoice: bool
   enable_subscription_invoice: bool
   email:
     from: email?
