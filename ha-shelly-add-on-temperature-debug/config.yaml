@@ -1,6 +1,6 @@
 name: "Shelly Add-on Temperature Debug"
 description: "Troubleshooting view for DS18B20/DHT22 sensors on Shelly Sensor Add-ons: live status, failure guidance, history charts, CSV export"
-version: "2026.07.18.2"
+version: "2026.07.18.3"
 slug: "shelly_addon_temperature_debug"
 url: "https://github.com/steiner-dominik/home-assistant-apps"
 # Prebuilt multi-arch image, published from the application source repo
