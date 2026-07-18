@@ -1,0 +1,54 @@
+configuration:
+  devices:
+    name: Shelly devices
+    description: >-
+      One entry per Shelly to query. Each entry: host (required, IP or
+      hostname), name (optional display name), password (optional, if this
+      device's admin password differs from the global one), user (optional,
+      defaults to admin).
+  shelly_password:
+    name: Shelly password (fallback)
+    description: >-
+      Admin password used for every device without its own password entry.
+      Leave empty if your Shellys have authentication disabled. The password
+      never leaves the server side.
+  background_poll_seconds:
+    name: Background polling interval
+    description: >-
+      Seconds between automatic server-side queries of all devices, so
+      history charts are already populated when the page is opened. 0
+      disables background polling.
+  history_max_mb:
+    name: History memory limit (MB)
+    description: >-
+      Total in-memory history budget shared by all sensors. When full, the
+      oldest samples are dropped. History is lost when the app restarts.
+  auto_refresh_seconds:
+    name: Auto-refresh interval
+    description: Interval (seconds) of the page's auto-refresh toggle.
+  auto_refresh_default:
+    name: Auto-refresh on by default
+    description: >-
+      Start the page's auto-refresh enabled for browsers that never touched
+      the toggle.
+  query_timeout_seconds:
+    name: Query timeout
+    description: Per-device query timeout in seconds.
+  query_min_interval_seconds:
+    name: Query rate limit
+    description: >-
+      Minimum seconds between real device queries; faster requests share a
+      cached result so the page can never hammer the Shellys.
+  metrics_enabled:
+    name: Prometheus metrics
+    description: >-
+      Expose Prometheus metrics at /metrics. To scrape from outside Home
+      Assistant, also map the port in the Network section.
+  debug_token:
+    name: Access token (only for the exposed port)
+    description: >-
+      Not needed for ingress. Set a long random value if you map the app's
+      port in the Network section — API access on that port then requires
+      this token.
+network:
+  8080/tcp: Web UI without ingress (optional — set an access token when you expose this)

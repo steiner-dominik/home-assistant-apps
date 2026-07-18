@@ -25,19 +25,24 @@ maintained by Dominik Steiner.
 | App | Description |
 | ------ | ----------- |
 | [**⚡ Tesla Invoices**](ha-tesla-invoices/) | Downloads your Tesla charging & subscription invoices, with an analytics dashboard (monthly kWh/cost charts, price per kWh, CSV export) and optional email export. |
+| [**🌡 Shelly Add-on Temperature Debug**](ha-shelly-add-on-temperature-debug/) | Troubleshooting view for DS18B20/DHT22 sensors on Shelly Sensor Add-ons: live status with failure guidance, wiggle test, history charts, CSV export, optional Prometheus metrics. |
 
 ## 🧩 How this repository works
 
-This repository only contains the app **manifests and documentation**. The
-application itself lives in
-[steiner-dominik/tesla-invoices](https://github.com/steiner-dominik/tesla-invoices),
-which publishes a prebuilt multi-arch Docker image to GHCR. The Supervisor
+This repository only contains the app **manifests and documentation**. Each
+application lives in its own repository —
+[steiner-dominik/tesla-invoices](https://github.com/steiner-dominik/tesla-invoices)
+and
+[steiner-dominik/shelly-add-on-temperature-debug](https://github.com/steiner-dominik/shelly-add-on-temperature-debug)
+— which publishes a prebuilt multi-arch Docker image to GHCR. The Supervisor
 pulls that image directly (`image:` key in `config.yaml`) — installs are fast
 and nothing is compiled on your Home Assistant machine.
 
 Found a bug or have a feature request?
 
-- **App behavior, dashboard, downloads** → [tesla-invoices issues](https://github.com/steiner-dominik/tesla-invoices/issues)
+- **App behavior** → the application repository's issues
+  ([tesla-invoices](https://github.com/steiner-dominik/tesla-invoices/issues),
+  [shelly-add-on-temperature-debug](https://github.com/steiner-dominik/shelly-add-on-temperature-debug/issues))
 - **Installation, app options, ingress** → [this repository's issues](https://github.com/steiner-dominik/home-assistant-apps/issues)
 
 ## ❤️ Support the project

@@ -1,0 +1,53 @@
+name: "Shelly Add-on Temperature Debug"
+description: "Troubleshooting view for DS18B20/DHT22 sensors on Shelly Sensor Add-ons: live status, failure guidance, history charts, CSV export"
+version: "2026.07.18.2"
+slug: "shelly_addon_temperature_debug"
+url: "https://github.com/steiner-dominik/home-assistant-apps"
+# Prebuilt multi-arch image, published from the application source repo
+# (https://github.com/steiner-dominik/shelly-add-on-temperature-debug). The
+# Supervisor pulls <image>:<version>, so this app's version must match a
+# published image tag.
+image: "ghcr.io/steiner-dominik/shelly-add-on-temperature-debug"
+init: false
+ingress: true
+ingress_port: 8080
+panel_icon: mdi:thermometer-alert
+panel_title: Shelly Temp Debug
+watchdog: http://[HOST]:[PORT:8080]/healthz
+arch:
+  - aarch64
+  - amd64
+# The app reads /data/options.json itself (single static binary, no shell in
+# the image). With ingress, Home Assistant authenticates every request, the
+# page is served at the container root, and no token is needed. Exposing the
+# port below is optional and should be combined with debug_token.
+options:
+  devices: []
+  shelly_password: ""
+  background_poll_seconds: 60
+  history_max_mb: 16
+  auto_refresh_seconds: 30
+  auto_refresh_default: false
+  query_timeout_seconds: 5
+  query_min_interval_seconds: 2
+  metrics_enabled: false
+  debug_token: ""
+schema:
+  devices:
+    - host: str
+      name: str?
+      password: password?
+      user: str?
+  shelly_password: password?
+  background_poll_seconds: int(0,86400)
+  history_max_mb: int(1,1024)
+  auto_refresh_seconds: int(1,3600)
+  auto_refresh_default: bool
+  query_timeout_seconds: int(1,60)
+  query_min_interval_seconds: int(0,3600)
+  metrics_enabled: bool
+  debug_token: password?
+ports:
+  8080/tcp: null
+ports_description:
+  8080/tcp: "Web UI without ingress (optional — set a debug_token when you expose this)"
