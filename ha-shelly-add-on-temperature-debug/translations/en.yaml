@@ -50,5 +50,13 @@ configuration:
       Not needed for ingress. Set a long random value if you map the app's
       port in the Network section — API access on that port then requires
       this token.
+  provision_passphrase:
+    name: Provisioning passphrase (optional)
+    description: >-
+      When set, the page can provision new DS18B20 sensors: scan the Sensor
+      Add-on's 1-Wire bus, name a new probe, and attach it (the Shelly
+      reboots briefly to activate it). Anyone with this passphrase can add
+      sensors and thereby restart the device — pick a long random value.
+      Leave empty to disable provisioning entirely.
 network:
   8080/tcp: Web UI without ingress (optional — set an access token when you expose this)

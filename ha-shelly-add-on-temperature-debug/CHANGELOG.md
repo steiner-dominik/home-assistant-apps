@@ -1,4 +1,14 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.07.18.4
+
+- New: **sensor provisioning** — with the new `provision_passphrase` option
+  set, the page can scan the Sensor Add-on's 1-Wire bus and attach + name
+  newly connected DS18B20 probes (the Shelly reboots briefly to activate
+  them). Lets a helper provision sensors without the Shelly web UI or admin
+  password; disabled while the option is empty.
+- Redesigned app icons (page favicon, PWA icons, and this app's store icon).
+- Cleaner page footer.
+
 ## 2026.07.18.3
 
 - Fix startup as a Home Assistant app: the options file mounted by the

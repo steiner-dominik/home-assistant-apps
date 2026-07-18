@@ -85,6 +85,22 @@ Set to `true` to expose Prometheus metrics (temperatures, humidity, sensor
 health, Wi-Fi RSSI, uptime) at the app's `/metrics` endpoint. To scrape it
 from outside, also expose the port (below).
 
+### Option: `provision_passphrase`
+
+Off by default. When set, the page gets an **Add sensors** panel that can
+provision brand-new DS18B20 probes without anyone touching the Shelly web
+UI: connect the probe to the Sensor Add-on's terminals, scan the 1-Wire bus
+from the page, enter the desired sensor name, and the app attaches the probe
+(`SensorAddon.AddPeripheral`), reboots the Shelly to activate it, and sets
+the name.
+
+The panel asks for this passphrase **in addition** to the normal page
+access — so you can hand the passphrase to whoever wires up new sensors
+without giving them the Shelly admin password. Anyone with the passphrase
+can add sensors and thereby briefly restart the device (its outputs may
+switch during the restart), so pick a long random value. Leave empty to
+disable provisioning entirely (the API then does not exist).
+
 ### Option: `debug_token` and the optional port
 
 Via ingress (the normal way) Home Assistant authenticates every request and
@@ -105,6 +121,9 @@ network. The token is entered once in the browser (or sent as
   in the chart.
 - The **history chart** shows this app-session's readings; export everything
   as **CSV** for analysis elsewhere.
+- With a `provision_passphrase` configured, **Add sensors** lets a helper
+  attach newly wired DS18B20 probes (name asked before adding) without
+  access to the Shelly web UI.
 - The page is available in **English and German**, follows your light/dark
   preference, and can be **installed as a PWA** on your phone.
 
