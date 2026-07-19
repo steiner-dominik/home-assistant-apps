@@ -1,4 +1,21 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.07.19.2
+
+- New: the app icon follows the system's **dark/light theme** (favicon and
+  PWA icons).
+- Opening the page **no longer queries the devices** — it shows the newest
+  cached result instead, so page views don't add samples to the history.
+  Fresh readings still come from background polling, auto-refresh, or the
+  query button.
+- The summary bar now groups the current readings **per Shelly**, each
+  sensor as a small round bubble (failing sensors highlighted).
+- Compact toolbar: shorter button labels (full text in the tooltip), fits
+  one row on desktop — noticeably better in German and on phones.
+- Charts: **more x-axis timestamps** on even local-time boundaries, and
+  axis text is no longer stretched on narrow screens.
+- Installed PWAs now **reload automatically** when a new version is
+  deployed (no more empty screen after an update).
+
 ## 2026.07.19.1
 
 - New: **time-range selector** for the history charts (15 min … 7 days,
