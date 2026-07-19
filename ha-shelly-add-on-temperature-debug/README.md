@@ -6,13 +6,6 @@ humidity sensors attached to your Shelly Sensor Add-ons.**
 > ⚠️ **This is an independent community project. It is not affiliated with,
 > endorsed by, or supported by Shelly Group / Allterco Robotics in any way.**
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/steiner-dominik/shelly-add-on-temperature-debug/main/docs/screenshot-dark.png">
-    <img src="https://raw.githubusercontent.com/steiner-dominik/shelly-add-on-temperature-debug/main/docs/screenshot-light.png" alt="The debug page: fleet summary with all current readings, per-sensor status with guidance for a failing DS18B20, and history charts" width="720">
-  </picture>
-</p>
-
 - 🩺 One click shows every sensor on every configured Shelly: value, status
   (OK · 85 °C reset · no reading · missing · unreachable) and plain-language
   guidance on what to check
@@ -21,6 +14,13 @@ humidity sensors attached to your Shelly Sensor Add-ons.**
 - 🕙 Background polling keeps history filling even while nobody watches
 - 📊 CSV export, optional Prometheus metrics, English/German, dark/light
 - 🔒 The Shelly admin password stays on the server — viewers never see it
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/steiner-dominik/shelly-add-on-temperature-debug/main/docs/screenshot-dark.png">
+    <img src="https://raw.githubusercontent.com/steiner-dominik/shelly-add-on-temperature-debug/main/docs/screenshot-light.png" alt="The debug page: fleet summary with all current readings, per-sensor status with guidance for a failing DS18B20, and history charts" width="720">
+  </picture>
+</p>
 
 See [DOCS.md](DOCS.md) for installation and all configuration options.
 
