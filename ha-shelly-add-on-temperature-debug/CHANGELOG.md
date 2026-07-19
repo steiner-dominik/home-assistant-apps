@@ -1,4 +1,18 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.07.19.1
+
+- New: **time-range selector** for the history charts (15 min … 7 days,
+  default: last 24 h); the wiggle test automatically zooms to the last
+  15 minutes.
+- New: the dashboard is now **live** — it picks up new readings from
+  background polling every 5 seconds, no clicking needed.
+- New: the summary bar at the top shows the **current reading of every
+  sensor** at a glance.
+- The status legend in the footer is now an expandable, readable table
+  covering all statuses.
+- Slightly more verbose logging (status changes, provisioning steps) while
+  staying quiet in steady state.
+
 ## 2026.07.18.4
 
 - New: **sensor provisioning** — with the new `provision_passphrase` option
