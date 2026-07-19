@@ -2,6 +2,9 @@
 
 [![Open app repo on your Home Assistant instance][repo-badge]][repo-link]
 
+[![Check image tags](https://github.com/steiner-dominik/home-assistant-apps/actions/workflows/check-image.yml/badge.svg)](https://github.com/steiner-dominik/home-assistant-apps/actions/workflows/check-image.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-%E2%9D%A4-EA4AAA?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/steiner-dominik)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-donate-FF5E5B?logo=kofi&logoColor=white)](https://ko-fi.com/dominik_steiner)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/dominik.st)

@@ -1,4 +1,31 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.07.19.1
+
+- **New versioning scheme**: releases are now fully date-based —
+  `YYYY.MM.DD.N`, where `N` counts releases published on the same day.
+- **New app icon**, redrawn as vector art in the familiar style and used
+  consistently across the app store, the dashboard favicon (which follows
+  your light/dark theme automatically) and the new PWA install.
+- **Installable as an app (PWA)** when the dashboard is opened directly in a
+  browser (standalone deployments): use *Install app* / *Add to Home
+  Screen* for a standalone window. Inside Home Assistant, ingress and the
+  companion app work exactly as before.
+- **Privacy: the full VIN no longer leaks into the app log.** Log lines
+  that mention invoice file names (which embed the VIN) now redact it down
+  to its last four characters, so logs are safe to paste into bug reports.
+- **Faster dashboard with a large invoice history**: metadata is served
+  from an always-fresh in-memory cache instead of re-reading every file on
+  each dashboard refresh — quicker, and easier on SD cards.
+- **Security hardening** from an external audit: container volume
+  ownership is fixed without following symlinks; the CSV/ZIP export
+  endpoints now require the same `X-Requested-With` header as every other
+  API call, so foreign websites cannot hot-link them; token reads are fully
+  lock-protected; and `/health` stays responsive during a long PDF re-scan
+  (no more risk of a spurious watchdog restart).
+- Every release of the application repository now ships an SBOM (software
+  bill of materials), and the README documents how to keep the app alive
+  should it ever become unmaintained.
+
 ## 2026.07.08
 
 - **Easier Tesla login**: the *Connect Tesla account* dialog now walks you

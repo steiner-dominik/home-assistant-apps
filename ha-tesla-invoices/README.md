@@ -12,6 +12,13 @@
 - 🚗 Multi-vehicle and multi-currency aware
 - 🔑 Only a refresh token is needed — access tokens are handled automatically
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/steiner-dominik/tesla-invoices/main/docs/screenshot-dashboard-dark.png">
+    <img src="https://raw.githubusercontent.com/steiner-dominik/tesla-invoices/main/docs/screenshot-dashboard-light.png" alt="The analytics dashboard with example data" width="720">
+  </picture>
+</p>
+
 See [DOCS.md](DOCS.md) for installation and all configuration options.
 
 This app runs the prebuilt image from
