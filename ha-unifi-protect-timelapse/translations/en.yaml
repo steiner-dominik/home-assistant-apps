@@ -1,0 +1,100 @@
+configuration:
+  archive_path:
+    name: Archive path
+    description: >-
+      Where the images live, as seen from this app. Mount your NAS share under
+      Settings → System → Storage; it then appears below /media or /share.
+  camera_source:
+    name: Camera source
+    description: >-
+      protect: the UniFi OS integration API, which can return full resolution.
+      snapshot: the camera's own anonymous snapshot endpoint.
+  camera_fallback_source:
+    name: Fallback source
+    description: >-
+      Tried whenever the primary source fails. The primary is retried on every
+      attempt, so recovery is automatic. Leave empty for no fallback.
+  camera_snapshot_url:
+    name: Snapshot URL
+    description: >-
+      Used by the snapshot source, for example http://camera.lan/snap.jpeg.
+      Requires "Anonymous Snapshot" enabled for the camera in UniFi Protect.
+  protect_host:
+    name: Protect console URL
+    description: "URL of the UniFi OS console, including the scheme, e.g. https://unifi.lan"
+  protect_api_key:
+    name: Protect API key
+    description: Created under Settings → Control Plane → Integrations on the console.
+  protect_camera_id:
+    name: Protect camera ID
+    description: >-
+      Which camera to use. List the available IDs by running "cameras" against
+      the standalone image, or check the console's integration API.
+  protect_insecure_tls:
+    name: Skip TLS verification
+    description: >-
+      Enable only if the console presents a self-signed certificate. It disables
+      certificate checking for the connection to the console.
+  capture_enabled:
+    name: Capture images
+    description: >-
+      Off by default: this app then only watches. Turn on if you want Home
+      Assistant to take the images itself rather than a separate deployment.
+  sync_mode:
+    name: Archive sync
+    description: >-
+      Whether this app moves buffered images into the archive. Keep "off" when
+      something else already does the capturing and moving.
+  auth_mode:
+    name: Authentication mode
+    description: >-
+      ingress: Home Assistant authenticates panel users. local: the app uses its
+      own token. Ingress is correct unless you expose the port yourself.
+  capture_interval:
+    name: Capture interval
+    description: 'Time between images when capturing is on, e.g. "5m".'
+  filename_prefix:
+    name: Filename prefix
+    description: >-
+      Prepended to the timestamp of each stored image. Match your existing
+      archive so the naming stays uniform.
+  active_hours:
+    name: Active hours
+    description: >-
+      Daily capture window as HH-HH. The end hour is inclusive, so 05-21
+      captures until 21:59.
+  monitor_enabled:
+    name: Monitoring
+    description: >-
+      Probe the camera and check how fresh the archive is. This is what makes
+      the health check and the Home Assistant entities meaningful.
+  monitor_interval:
+    name: Monitor interval
+    description: 'How often to probe the camera and the archive, e.g. "5m".'
+  archive_max_age:
+    name: Staleness limit
+    description: >-
+      How old the newest archived image may become before this app reports
+      unhealthy. Set it comfortably above your capture interval.
+  frozen_frame_threshold:
+    name: Frozen frame threshold
+    description: >-
+      A camera can keep answering with the same image forever. This many
+      byte-identical frames in a row is treated as a frozen camera. 0 disables.
+  video_enabled:
+    name: Video export
+    description: Allow rendering a day of images into an MP4 from the archive browser.
+  video_fps:
+    name: Video frame rate
+    description: Default frames per second for rendered videos.
+  entity_prefix:
+    name: Entity prefix
+    description: >-
+      Prefix for the entities this app creates, e.g. "timelapse" produces
+      binary_sensor.timelapse_camera_online.
+  language:
+    name: Language
+    description: Default interface language; each browser can override it.
+  log_level:
+    name: Log level
+    description: How much detail to write to the app log.

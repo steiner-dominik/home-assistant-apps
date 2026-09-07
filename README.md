@@ -30,15 +30,17 @@ maintained by Dominik Steiner.
 | [**⚡ Tesla Invoices**](ha-tesla-invoices/) | Downloads your Tesla charging & subscription invoices, with an analytics dashboard (monthly kWh/cost charts, price per kWh, CSV export) and optional email export. |
 | [**🌡 Shelly Add-on Temperature Debug**](ha-shelly-add-on-temperature-debug/) | Troubleshooting view for DS18B20/DHT22 sensors on Shelly Sensor Add-ons: live status with failure guidance, wiggle test, history charts, CSV export, optional Prometheus metrics. |
 | [**🏊 Shelly Pool Control**](ha-shelly-pool-control/) | Solar pool heating panel for a Shelly 2PM/1PM controller: monitoring, settings, history charts, notifications and backups — the safety-critical control loop runs on the Shelly itself. |
+| [**📷 UniFi Protect Timelapse**](ha-unifi-protect-timelapse/) | Timelapse capture and archive watchdog for a UniFi Protect camera: live view, archive browser with gap detection, MP4/ZIP export, and health entities for camera reachability and archive freshness. |
 
 ## 🧩 How this repository works
 
 This repository only contains the app **manifests and documentation**. Each
 application lives in its own repository —
 [steiner-dominik/tesla-invoices](https://github.com/steiner-dominik/tesla-invoices),
-[steiner-dominik/shelly-add-on-temperature-debug](https://github.com/steiner-dominik/shelly-add-on-temperature-debug)
-and
+[steiner-dominik/shelly-add-on-temperature-debug](https://github.com/steiner-dominik/shelly-add-on-temperature-debug),
 [steiner-dominik/shelly-pool-control](https://github.com/steiner-dominik/shelly-pool-control)
+and
+[steiner-dominik/unifi-protect-timelapse](https://github.com/steiner-dominik/unifi-protect-timelapse)
 — which publishes a prebuilt multi-arch Docker image to GHCR. The Supervisor
 pulls that image directly (`image:` key in `config.yaml`) — installs are fast
 and nothing is compiled on your Home Assistant machine.
@@ -48,7 +50,8 @@ Found a bug or have a feature request?
 - **App behavior** → the application repository's issues
   ([tesla-invoices](https://github.com/steiner-dominik/tesla-invoices/issues),
   [shelly-add-on-temperature-debug](https://github.com/steiner-dominik/shelly-add-on-temperature-debug/issues),
-  [shelly-pool-control](https://github.com/steiner-dominik/shelly-pool-control/issues))
+  [shelly-pool-control](https://github.com/steiner-dominik/shelly-pool-control/issues),
+  [unifi-protect-timelapse](https://github.com/steiner-dominik/unifi-protect-timelapse/issues))
 - **Installation, app options, ingress** → [this repository's issues](https://github.com/steiner-dominik/home-assistant-apps/issues)
 
 ## ❤️ Support the project
@@ -68,7 +71,8 @@ If these apps are useful to you, you can support their development:
 The apps in this repository are independent community projects. They are
 **not affiliated with, endorsed by, sponsored by, or in any way officially
 connected to any third party whose services they interact with — in
-particular not with Tesla, Inc.** or any of its subsidiaries. All product
+particular not with Tesla, Inc. or Ubiquiti Inc.** or any of their
+subsidiaries. All product
 names, trademarks and registered trademarks are property of their respective
 owners.
 
