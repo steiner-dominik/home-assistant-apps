@@ -1,4 +1,25 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.07
+
+### Fixed
+
+- **A panel left open across an update kept running the old code.** The panel
+  lives in an iframe you can leave open for days, and an old one fails in ways
+  the app's own log knows nothing about — a panel from before 26.09.05 reports
+  "camera unreachable" from a bug fixed back then, while the server is answering
+  perfectly. The panel now reloads itself once when it notices the app has been
+  updated.
+
+  **If the live preview is still failing, reload the panel** (or your browser
+  tab) once after updating. From this version on it does that by itself.
+
+### Added
+
+- **Request logging.** Failed requests are recorded with the path, status and
+  timing, so a browser that asked and got an error can be told apart from one
+  that never asked at all.
+- The live preview shows the actual error on screen instead of only a red badge.
+
 ## 26.09.06
 
 ### Fixed
