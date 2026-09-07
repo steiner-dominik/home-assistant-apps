@@ -1,7 +1,12 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
-## 26.09.02
+## 26.09.03
 
-Initial release.
+Initial working release.
+
+Fixes the app failing to start with
+`reading /data/options.json: permission denied`. The image dropped privileges,
+but Home Assistant writes an app's configuration as root and does not change the
+container's user, so the app could not read its own settings.
 
 - Timelapse capture and archive watchdog for a UniFi Protect camera, packaged
   for Home Assistant with ingress support.
@@ -21,5 +26,6 @@ Initial release.
 - Live view with an on-demand preview that is never written to the archive.
 - Dark/light/auto theme, English and German, installable as a PWA.
 
-Version 26.09.01 of the image exists but was never usable as an app: it ignored
-the configured archive path and lost its state on restart.
+Versions 26.09.01 and 26.09.02 of the image exist but were never usable as an
+app: 26.09.01 ignored the configured archive path and lost its state on restart,
+and 26.09.02 could not read its configuration at all.
