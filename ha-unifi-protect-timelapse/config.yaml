@@ -1,6 +1,6 @@
 name: "UniFi Protect Timelapse"
 description: "Timelapse capture and archive watchdog for a UniFi Protect camera: live view, archive browser with gap detection, video export and health monitoring"
-version: "26.09.01"
+version: "26.09.02"
 slug: "unifi_protect_timelapse"
 url: "https://github.com/steiner-dominik/unifi-protect-timelapse"
 # Prebuilt multi-arch image, published from the application source repo

@@ -1,5 +1,5 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
-## 26.09.01
+## 26.09.02
 
 Initial release.
 
@@ -20,3 +20,6 @@ Initial release.
 - Archive browser with playback, gap detection, MP4 export and ZIP download.
 - Live view with an on-demand preview that is never written to the archive.
 - Dark/light/auto theme, English and German, installable as a PWA.
+
+Version 26.09.01 of the image exists but was never usable as an app: it ignored
+the configured archive path and lost its state on restart.
