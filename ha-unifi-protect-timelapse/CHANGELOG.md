@@ -1,4 +1,25 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.06
+
+### Fixed
+
+- **The panel was blocked from rendering inside Home Assistant.** The app
+  refused to be embedded in any iframe, and an app panel is exactly that. It now
+  allows Home Assistant to embed it, while still refusing any other site.
+
+### Added
+
+- **A `diagnose` command** for when the camera is unreachable from the app but
+  fine from everywhere else. It reports the container's own network, whether the
+  camera's address collides with it, the state of the archive, and the result of
+  a real snapshot request.
+
+  Docker hands its networks addresses from the same private range many home
+  networks use. If your camera's address lands inside one of those, containers
+  treat it as being on their own bridge and never send the traffic to your LAN —
+  so it works from the Home Assistant host and times out from inside the app.
+  This is now reported on the Status tab and in the log, with the fix.
+
 ## 26.09.05
 
 ### Fixed
