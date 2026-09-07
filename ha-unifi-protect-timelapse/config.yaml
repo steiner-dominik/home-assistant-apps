@@ -1,6 +1,6 @@
 name: "UniFi Protect Timelapse"
 description: "Timelapse capture and archive watchdog for a UniFi Protect camera: live view, archive browser with gap detection, video export and health monitoring"
-version: "26.09.03"
+version: "26.09.04"
 slug: "unifi_protect_timelapse"
 url: "https://github.com/steiner-dominik/unifi-protect-timelapse"
 # Prebuilt multi-arch image, published from the application source repo
@@ -30,13 +30,13 @@ map:
   - share:rw
 options:
   archive_path: "/media/timelapse"
-  camera_source: "protect"
-  camera_fallback_source: "snapshot"
+  camera_source: "snapshot"
+  camera_fallback_source: ""
   camera_snapshot_url: ""
   protect_host: ""
   protect_api_key: ""
   protect_camera_id: ""
-  protect_insecure_tls: false
+  camera_insecure_tls: false
   capture_enabled: false
   sync_mode: "off"
   auth_mode: "ingress"
@@ -45,7 +45,7 @@ options:
   active_hours: "05-21"
   monitor_enabled: true
   monitor_interval: "5m"
-  archive_max_age: "15m"
+  archive_max_age: ""
   frozen_frame_threshold: 3
   video_enabled: true
   video_fps: 12
@@ -60,7 +60,7 @@ schema:
   protect_host: str?
   protect_api_key: password?
   protect_camera_id: str?
-  protect_insecure_tls: bool
+  camera_insecure_tls: bool
   capture_enabled: bool
   sync_mode: list(off|opportunistic|nightly)
   auth_mode: list(ingress|local)
@@ -69,7 +69,7 @@ schema:
   active_hours: match(^([01]?[0-9]|2[0-3])-([01]?[0-9]|2[0-3])$)
   monitor_enabled: bool
   monitor_interval: str
-  archive_max_age: str
+  archive_max_age: str?
   frozen_frame_threshold: int(0,100)
   video_enabled: bool
   video_fps: int(1,120)

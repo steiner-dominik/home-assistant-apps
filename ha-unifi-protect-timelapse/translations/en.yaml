@@ -30,11 +30,12 @@ configuration:
     description: >-
       Which camera to use. List the available IDs by running "cameras" against
       the standalone image, or check the console's integration API.
-  protect_insecure_tls:
+  camera_insecure_tls:
     name: Skip TLS verification
     description: >-
-      Enable only if the console presents a self-signed certificate. It disables
-      certificate checking for the connection to the console.
+      Enable if the camera or the console presents a self-signed certificate,
+      which is usual on a local address. It disables certificate checking for
+      every camera request.
   capture_enabled:
     name: Capture images
     description: >-
@@ -75,7 +76,9 @@ configuration:
     name: Staleness limit
     description: >-
       How old the newest archived image may become before this app reports
-      unhealthy. Set it comfortably above your capture interval.
+      unhealthy, for example "30m" or "26h". Leave empty for the default of
+      26 hours, which suits an archive written by a nightly bulk transfer.
+      Only tighten it if images really do land continuously.
   frozen_frame_threshold:
     name: Frozen frame threshold
     description: >-
