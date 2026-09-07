@@ -1,4 +1,37 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.05
+
+### Fixed
+
+- **Live preview always said "camera unreachable"**, whatever the camera was
+  doing. A naming collision introduced with ingress support meant the request
+  was never actually made. The server had been answering correctly all along,
+  which is why nothing showed in the log.
+- **A missing image showed a broken image icon.** The Live tab now explains what
+  is wrong instead: whether the archive directory is missing, cannot be read, or
+  simply has no images yet.
+
+### Added
+
+- **The archive is diagnosed instead of shown as a dash.** Its state is checked
+  at startup and on every check, and reported with the path and what to look at,
+  in the log, on the Live tab and on the Status tab. An empty panel used to be
+  indistinguishable from a wrong path.
+- **Errors in the panel are written to the app log.** A browser console is no
+  use to someone reading add-on logs, so the page now reports its own failures
+  back to the app.
+
+### Note
+
+A wrong archive path is reported loudly but does **not** make the app unhealthy,
+so Home Assistant will not restart it over a configuration mistake.
+
+**Where do the images come from?** This app reads an archive that something else
+writes; it does not capture or move files unless you turn that on. Mount your
+share under Settings → System → Storage and point `archive_path` at it. The Live
+tab works from the camera directly and needs no archive at all. See the
+Documentation tab.
+
 ## 26.09.04
 
 ### Fixed

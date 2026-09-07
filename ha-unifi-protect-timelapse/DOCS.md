@@ -10,13 +10,42 @@ frames or disturb the interval.
 Full documentation:
 <https://github.com/steiner-dominik/unifi-protect-timelapse>
 
+## Where do the images come from?
+
+This app does not capture and does not move files. It **reads an archive that
+something else writes** — your Raspberry Pi today, or the standalone Docker
+deployment once you switch over — and shows you the live camera alongside it.
+
+So there are two independent things on this page:
+
+- **Live** always works from the camera directly. It needs only the camera
+  settings, not the archive.
+- **Timelapse** and the archive health checks read `archive_path`. If nothing
+  fills that directory, there is nothing to show, and the panel will say so.
+
+That is why `capture_enabled` and `sync_mode` are off by default: running a
+second capturer against the same archive would give you uneven spacing. If you
+want *this* app to be the thing that captures and moves files, see
+[Capturing from Home Assistant](#capturing-from-home-assistant).
+
 ## Setup
 
 1. **Mount your archive.** Go to **Settings → System → Storage → Add network
-   storage** and mount the NFS share your images live on. Home Assistant makes
-   it available under `/media/<name>` or `/share/<name>` depending on the usage
-   type you pick.
-2. Set `archive_path` to that location, for example `/media/timelapse`.
+   storage** and mount the NFS share your images live on. Pick usage type
+   **Media** and give it a name; Home Assistant then makes it available to this
+   app at `/media/<name>`. (Usage type *Share* appears at `/share/<name>`.)
+
+   Without this step the app has no archive at all: the Live tab still works,
+   but the Timelapse tab is empty and the panel reports the directory as
+   missing.
+2. Set `archive_path` to that location. If you named the mount `timelapse`,
+   that is `/media/timelapse`. The app expects the images in the usual
+   `YYYY/YYYY-MM/YYYY-MM-DD/` layout underneath it, so point it at the
+   directory that *contains* the year folders.
+
+   Check it worked: the **Status** tab shows *Archive: readable*, and the app
+   log says `archive is readable`. If the path is wrong you get an explicit
+   error naming it, both in the log and on the Live tab.
 3. Point the app at your camera:
    - `camera_source: protect` — set `protect_host`, `protect_api_key` and
      `protect_camera_id`. Create the key under **Settings → Control Plane →
