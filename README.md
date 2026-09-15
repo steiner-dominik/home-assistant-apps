@@ -31,6 +31,7 @@ maintained by Dominik Steiner.
 | [**🌡 Shelly Add-on Temperature Debug**](ha-shelly-add-on-temperature-debug/) | Troubleshooting view for DS18B20/DHT22 sensors on Shelly Sensor Add-ons: live status with failure guidance, wiggle test, history charts, CSV export, optional Prometheus metrics. |
 | [**🏊 Shelly Pool Control**](ha-shelly-pool-control/) | Solar pool heating panel for a Shelly 2PM/1PM controller: monitoring, settings, history charts, notifications and backups — the safety-critical control loop runs on the Shelly itself. |
 | [**📷 UniFi Protect Timelapse**](ha-unifi-protect-timelapse/) | Timelapse capture and archive watchdog for a UniFi Protect camera: live view, archive browser with gap detection, MP4/ZIP export, and health entities for camera reachability and archive freshness. |
+| [**🧠 VMware Memory Tiering Report**](ha-vmware-memory-report/) | Hourly memory collector for VMware vCenter with a trend report that shows whether NVMe memory tiering fits your clusters: tiering candidates, failover headroom, oversized VMs, and health entities. |
 
 ## 🧩 How this repository works
 
@@ -38,9 +39,10 @@ This repository only contains the app **manifests and documentation**. Each
 application lives in its own repository —
 [steiner-dominik/tesla-invoices](https://github.com/steiner-dominik/tesla-invoices),
 [steiner-dominik/shelly-add-on-temperature-debug](https://github.com/steiner-dominik/shelly-add-on-temperature-debug),
-[steiner-dominik/shelly-pool-control](https://github.com/steiner-dominik/shelly-pool-control)
-and
+[steiner-dominik/shelly-pool-control](https://github.com/steiner-dominik/shelly-pool-control),
 [steiner-dominik/unifi-protect-timelapse](https://github.com/steiner-dominik/unifi-protect-timelapse)
+and
+[steiner-dominik/vmware-memory-report](https://github.com/steiner-dominik/vmware-memory-report)
 — which publishes a prebuilt multi-arch Docker image to GHCR. The Supervisor
 pulls that image directly (`image:` key in `config.yaml`) — installs are fast
 and nothing is compiled on your Home Assistant machine.
@@ -51,7 +53,8 @@ Found a bug or have a feature request?
   ([tesla-invoices](https://github.com/steiner-dominik/tesla-invoices/issues),
   [shelly-add-on-temperature-debug](https://github.com/steiner-dominik/shelly-add-on-temperature-debug/issues),
   [shelly-pool-control](https://github.com/steiner-dominik/shelly-pool-control/issues),
-  [unifi-protect-timelapse](https://github.com/steiner-dominik/unifi-protect-timelapse/issues))
+  [unifi-protect-timelapse](https://github.com/steiner-dominik/unifi-protect-timelapse/issues),
+  [vmware-memory-report](https://github.com/steiner-dominik/vmware-memory-report/issues))
 - **Installation, app options, ingress** → [this repository's issues](https://github.com/steiner-dominik/home-assistant-apps/issues)
 
 ## ❤️ Support the project
@@ -71,7 +74,7 @@ If these apps are useful to you, you can support their development:
 The apps in this repository are independent community projects. They are
 **not affiliated with, endorsed by, sponsored by, or in any way officially
 connected to any third party whose services they interact with — in
-particular not with Tesla, Inc. or Ubiquiti Inc.** or any of their
+particular not with Tesla, Inc., Ubiquiti Inc., VMware or Broadcom Inc.** or any of their
 subsidiaries. All product
 names, trademarks and registered trademarks are property of their respective
 owners.

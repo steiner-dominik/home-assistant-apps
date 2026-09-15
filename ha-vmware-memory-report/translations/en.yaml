@@ -1,0 +1,64 @@
+configuration:
+  servers:
+    name: vCenter servers
+    description: FQDN of each vCenter to collect from, e.g. vcenter01.example.com. Must be reachable on port 443.
+  username:
+    name: Username
+    description: A read-only vCenter account, e.g. svc-memtier@vsphere.local. The built-in Read-only role is enough.
+  password:
+    name: Password
+    description: Password of that account. It is never shown in the panel or the log.
+  verify_tls:
+    name: Verify TLS certificates
+    description: >-
+      Keep on and set the CA file for a vCenter with its own VMCA certificate.
+      Turn off only in a lab.
+  ca_file:
+    name: CA file
+    description: >-
+      vCenter root CA certificate (PEM), e.g. /ssl/vcenter-ca.pem. Download it from
+      the vCenter start page and copy it into Home Assistant's ssl folder.
+  report_days:
+    name: Report days
+    description: Days of history shown in the report.
+  threshold_pct:
+    name: Tiering guidance (% of DRAM)
+    description: Host active memory should stay at or below this share of DRAM. Broadcom's guidance is 50.
+  stretched_cluster:
+    name: All clusters are stretched
+    description: After a site failure half of the cluster remains, so failover headroom is checked against 50% instead of N+1.
+  stretched_clusters:
+    name: Stretched clusters
+    description: Or name the stretched clusters individually.
+  cold_pct:
+    name: Cold VM threshold (%)
+    description: VMs whose worst-day P95 active memory stays below this share of their configured memory are marked cold.
+  hot_pct:
+    name: Hot VM threshold (%)
+    description: VMs whose worst-day P95 active memory exceeds this share of their configured memory are marked hot.
+  exclude_vm_pattern:
+    name: Exclude VMs
+    description: Regular expression; matching VM names are skipped. The default skips vCLS agent VMs, ^$ skips none.
+  retention_months:
+    name: Retention (months)
+    description: CSV files older than this are deleted. 0 keeps everything.
+  title:
+    name: Report title
+    description: Shown in the report header.
+  support_contact:
+    name: Support contact
+    description: Shown in the report header, e.g. an email address or a link.
+  publish_entities:
+    name: Home Assistant entities
+    description: Create sensors for the collector status, last collection, hosts, VMs and the busiest host.
+  entity_prefix:
+    name: Entity prefix
+    description: >-
+      Prefix for the entities, e.g. "memtier" produces sensor.memtier_status.
+      Lowercase letters, digits and underscores.
+  language:
+    name: Language
+    description: Default panel language; each browser can switch it. The report itself is English.
+  log_level:
+    name: Log level
+    description: How much detail to write to the app log.

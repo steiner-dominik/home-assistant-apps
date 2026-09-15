@@ -1,0 +1,64 @@
+configuration:
+  servers:
+    name: vCenter-Server
+    description: FQDN jedes vCenters, von dem gesammelt wird, z. B. vcenter01.example.com. Muss auf Port 443 erreichbar sein.
+  username:
+    name: Benutzername
+    description: Ein Nur-Lese-Konto im vCenter, z. B. svc-memtier@vsphere.local. Die eingebaute Rolle „Read-only“ reicht.
+  password:
+    name: Passwort
+    description: Passwort dieses Kontos. Es wird weder im Panel noch im Protokoll angezeigt.
+  verify_tls:
+    name: TLS-Zertifikate prüfen
+    description: >-
+      Eingeschaltet lassen und für ein vCenter mit eigenem VMCA-Zertifikat die
+      CA-Datei setzen. Nur im Labor ausschalten.
+  ca_file:
+    name: CA-Datei
+    description: >-
+      Root-CA-Zertifikat des vCenters (PEM), z. B. /ssl/vcenter-ca.pem. Auf der
+      vCenter-Startseite herunterladen und in den ssl-Ordner von Home Assistant kopieren.
+  report_days:
+    name: Berichtstage
+    description: Wie viele Tage der Bericht zeigt.
+  threshold_pct:
+    name: Tiering-Richtwert (% des DRAM)
+    description: Der aktive Speicher eines Hosts sollte höchstens diesen Anteil des DRAM erreichen. Broadcom empfiehlt 50.
+  stretched_cluster:
+    name: Alle Cluster sind Stretched Cluster
+    description: Nach einem Standortausfall bleibt die Hälfte des Clusters, daher wird gegen 50 % statt N+1 geprüft.
+  stretched_clusters:
+    name: Stretched Cluster
+    description: Oder die Stretched Cluster einzeln benennen.
+  cold_pct:
+    name: Schwelle kalte VM (%)
+    description: VMs, deren P95 des aktiven Speichers am stärksten Tag unter diesem Anteil des konfigurierten Speichers bleibt, gelten als kalt.
+  hot_pct:
+    name: Schwelle heiße VM (%)
+    description: VMs, deren P95 des aktiven Speichers am stärksten Tag diesen Anteil des konfigurierten Speichers übersteigt, gelten als heiß.
+  exclude_vm_pattern:
+    name: VMs ausschließen
+    description: Regulärer Ausdruck; passende VM-Namen werden übersprungen. Der Standard überspringt vCLS-Agent-VMs, ^$ überspringt keine.
+  retention_months:
+    name: Aufbewahrung (Monate)
+    description: Ältere CSV-Dateien werden gelöscht. 0 behält alles.
+  title:
+    name: Berichtstitel
+    description: Wird im Kopf des Berichts angezeigt.
+  support_contact:
+    name: Support-Kontakt
+    description: Wird im Kopf des Berichts angezeigt, z. B. eine E-Mail-Adresse oder ein Link.
+  publish_entities:
+    name: Home-Assistant-Entitäten
+    description: Sensoren für Sammlerstatus, letzte Sammlung, Hosts, VMs und den auslastungsstärksten Host anlegen.
+  entity_prefix:
+    name: Entitäts-Präfix
+    description: >-
+      Präfix der Entitäten, z. B. ergibt „memtier“ sensor.memtier_status.
+      Kleinbuchstaben, Ziffern und Unterstriche.
+  language:
+    name: Sprache
+    description: Standardsprache des Panels; jeder Browser kann umschalten. Der Bericht selbst ist englisch.
+  log_level:
+    name: Protokollstufe
+    description: Wie detailliert das App-Protokoll ist.

@@ -1,0 +1,70 @@
+name: "VMware Memory Tiering Report"
+description: "Hourly VMware memory collector with a trend report that shows whether NVMe memory tiering fits your clusters, plus health entities"
+version: "26.09.01"
+slug: "vmware_memory_report"
+url: "https://github.com/steiner-dominik/vmware-memory-report"
+# Prebuilt multi-arch image, published from the application source repo
+# (https://github.com/steiner-dominik/vmware-memory-report). The Supervisor
+# pulls <image>:<version>, so this app's version must match a published image
+# tag.
+image: "ghcr.io/steiner-dominik/vmware-memory-report"
+init: false
+ingress: true
+ingress_port: 8080
+# Lets the app write its own entities to the Core API with the Supervisor
+# token, so collector health shows up in Home Assistant without MQTT or
+# template sensors.
+homeassistant_api: true
+panel_icon: mdi:memory
+panel_title: Memory Tiering
+watchdog: http://[HOST]:[PORT:8080]/healthz
+arch:
+  - aarch64
+  - amd64
+  - armv7
+# Read-only: a vCenter root CA certificate for TLS verification can be placed
+# in /ssl and referenced with ca_file.
+map:
+  - ssl:ro
+options:
+  servers: []
+  username: ""
+  password: ""
+  verify_tls: true
+  ca_file: ""
+  report_days: 30
+  threshold_pct: 50
+  stretched_cluster: false
+  stretched_clusters: []
+  cold_pct: 40
+  hot_pct: 75
+  exclude_vm_pattern: "^vCLS-"
+  retention_months: 13
+  title: "VMware Memory Tiering Report"
+  support_contact: "https://github.com/steiner-dominik/vmware-memory-report/issues"
+  publish_entities: true
+  entity_prefix: "memtier"
+  language: "en"
+  log_level: "info"
+schema:
+  servers:
+    - str
+  username: str?
+  password: password?
+  verify_tls: bool
+  ca_file: str?
+  report_days: int(1,400)
+  threshold_pct: float(1,100)
+  stretched_cluster: bool
+  stretched_clusters:
+    - str
+  cold_pct: float(0,100)
+  hot_pct: float(0,100)
+  exclude_vm_pattern: str
+  retention_months: int(0,1200)
+  title: str
+  support_contact: str
+  publish_entities: bool
+  entity_prefix: match(^[a-z0-9_]+$)
+  language: list(en|de)
+  log_level: list(debug|info|warning|error)
