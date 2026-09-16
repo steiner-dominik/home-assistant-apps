@@ -1,4 +1,19 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.18
+
+### Fixed
+
+- **Identical drives could not be told apart.** Eight identical SSDs in one
+  host became eight devices with the same name, so their entities ended up
+  numbered `..._2` to `..._8`. A device is now named "<model> <serial>" and the
+  entity ids follow the serial. The old entities are withdrawn automatically —
+  Home Assistant removes them, and the roughly one poll of history they hold
+  goes with them.
+- **A pending sector no longer flips straight to critical.** Drives report one
+  and clear it again minutes later once the sector reads cleanly, which made a
+  disk go critical and then back to ok. It is now a warning on first sight, and
+  critical only when the drive still reports it at the next poll.
+
 ## 26.09.17
 
 ### Fixed

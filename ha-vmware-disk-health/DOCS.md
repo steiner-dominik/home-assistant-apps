@@ -75,9 +75,11 @@ of SSH commands per host.
 | `temp_nvme_warn_c` / `temp_nvme_crit_c` | 70 / 80 °C |
 | `use_drive_temp_limit` | `true` — never warn later than the drive's own limit |
 
-Sector and error counters are not configurable: a pending or uncorrectable
-sector is always critical, a reallocated sector a warning, and a counter that
-grows within a week is critical.
+Sector and error counters are not configurable. A pending sector is a warning
+when first seen and critical when the drive still reports it at the next poll
+(drives clear these again by themselves); an uncorrectable sector is always
+critical, a reallocated sector a warning, and a counter that grows within a
+week is critical.
 
 **Per disk** you can rename a drive, ignore it, or change its thresholds:
 

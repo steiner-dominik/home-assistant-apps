@@ -1,6 +1,6 @@
 name: "VMware Disk Health"
 description: "SMART and SSD health for VMware ESXi hosts: wear, data written, temperatures and error counters, with history, Home Assistant entities and notifications"
-version: "26.09.17"
+version: "26.09.18"
 slug: "vmware_disk_health"
 url: "https://github.com/steiner-dominik/vmware-disk-health"
 # Prebuilt multi-arch image, published from the application source repo
