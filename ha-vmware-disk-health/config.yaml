@@ -1,6 +1,6 @@
 name: "VMware Disk Health"
 description: "SMART and SSD health for VMware ESXi hosts: wear, data written, temperatures and error counters, with history, Home Assistant entities and notifications"
-version: "26.09.16"
+version: "26.09.17"
 slug: "vmware_disk_health"
 url: "https://github.com/steiner-dominik/vmware-disk-health"
 # Prebuilt multi-arch image, published from the application source repo
@@ -38,6 +38,9 @@ options:
     temp_nvme_warn_c: 70
     temp_nvme_crit_c: 80
     use_drive_temp_limit: true
+  # Home Assistant requires a default for every option that is not marked
+  # optional, and a list cannot be marked optional.
+  disk_overrides: []
   mqtt:
     enabled: true
   alerts:

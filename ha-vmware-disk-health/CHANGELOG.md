@@ -1,4 +1,13 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.17
+
+### Fixed
+
+- **The Configuration tab refused to save** with "Missing option
+  'disk_overrides' in root". Home Assistant needs a default for every option
+  that is not marked optional, and a list cannot be marked optional, so the
+  per-disk settings now default to an empty list.
+
 ## 26.09.16
 
 First release.

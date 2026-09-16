@@ -1,0 +1,47 @@
+name: Check app options
+
+# Home Assistant validates the saved options against the whole schema, so every
+# option that is not marked optional ("str?") needs a default under "options" -
+# otherwise the Configuration tab refuses to save with "Missing option ... in
+# root". Lists cannot be marked optional at all, so they always need a default.
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  options-have-defaults:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Every non-optional option has a default
+        run: |
+          python3 - <<'PY'
+          import sys, pathlib, yaml
+
+          def missing(schema, options, path=""):
+              gaps = []
+              for key, spec in (schema or {}).items():
+                  here = f"{path}{key}"
+                  if isinstance(spec, str) and spec.rstrip().endswith("?"):
+                      continue
+                  if key not in (options or {}):
+                      gaps.append(here)
+                  elif isinstance(spec, dict):
+                      gaps += missing(spec, options.get(key) or {}, f"{here}.")
+              return gaps
+
+          failed = False
+          for config in sorted(pathlib.Path().glob("*/config.yaml")):
+              data = yaml.safe_load(config.read_text())
+              gaps = missing(data.get("schema", {}), data.get("options", {}))
+              if gaps:
+                  failed = True
+                  print(f"::error file={config}::no default for: {', '.join(gaps)}")
+              else:
+                  print(f"OK: {config.parent.name}")
+          sys.exit(1 if failed else 0)
+          PY
