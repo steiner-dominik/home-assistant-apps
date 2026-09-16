@@ -1,0 +1,103 @@
+name: "VMware Disk Health"
+description: "SMART and SSD health for VMware ESXi hosts: wear, data written, temperatures and error counters, with history, Home Assistant entities and notifications"
+version: "26.09.16"
+slug: "vmware_disk_health"
+url: "https://github.com/steiner-dominik/vmware-disk-health"
+# Prebuilt multi-arch image, published from the application source repo
+# (https://github.com/steiner-dominik/vmware-disk-health). The Supervisor pulls
+# <image>:<version>, so this app's version must match a published image tag.
+image: "ghcr.io/steiner-dominik/vmware-disk-health"
+init: false
+ingress: true
+ingress_port: 8080
+panel_icon: mdi:harddisk
+panel_title: Disk Health
+watchdog: http://[HOST]:[PORT:8080]/healthz
+# The Supervisor hands over the MQTT broker, so every disk shows up as a device
+# with its own entities without configuring a broker by hand.
+services:
+  - mqtt:want
+arch:
+  - aarch64
+  - amd64
+options:
+  hosts:
+    - name: "esxi-01"
+      address: "esxi-01.lan"
+  poll_interval_minutes: 60
+  retention_raw_days: 90
+  language: "auto"
+  log_level: "info"
+  thresholds:
+    life_remaining_warn_pct: 20
+    life_remaining_crit_pct: 10
+    temp_hdd_warn_c: 50
+    temp_hdd_crit_c: 60
+    temp_ssd_warn_c: 60
+    temp_ssd_crit_c: 70
+    temp_nvme_warn_c: 70
+    temp_nvme_crit_c: 80
+    use_drive_temp_limit: true
+  mqtt:
+    enabled: true
+  alerts:
+    enabled: false
+    min_severity: "warning"
+schema:
+  hosts:
+    - name: str
+      address: str
+      port: int(1,65535)?
+      username: str?
+      password: password?
+      smartctl_path: str?
+      exclude: str?
+      enabled: bool?
+  poll_interval_minutes: int(5,1440)
+  retention_raw_days: int(1,3650)
+  command_timeout_seconds: int(10,600)?
+  language: list(auto|en|de)
+  log_level: list(debug|info|warn|error)
+  thresholds:
+    life_remaining_warn_pct: float
+    life_remaining_crit_pct: float
+    temp_hdd_warn_c: float
+    temp_hdd_crit_c: float
+    temp_ssd_warn_c: float
+    temp_ssd_crit_c: float
+    temp_nvme_warn_c: float
+    temp_nvme_crit_c: float
+    use_drive_temp_limit: bool
+  disk_overrides:
+    - match: str
+      name: str?
+      ignore: bool?
+      life_remaining_warn_pct: float?
+      life_remaining_crit_pct: float?
+      temp_warn_c: float?
+      temp_crit_c: float?
+  mqtt:
+    enabled: bool
+    host: str?
+    port: int(1,65535)?
+    username: str?
+    password: password?
+    tls: bool?
+    discovery_prefix: str?
+    base_topic: str?
+  alerts:
+    enabled: bool
+    min_severity: list(warning|critical)
+    notify_recovery: bool?
+    notify_host_unreachable: bool?
+    ntfy_url: str?
+    ntfy_token: password?
+    gotify_url: str?
+    gotify_token: password?
+    smtp_host: str?
+    smtp_port: int(1,65535)?
+    smtp_username: str?
+    smtp_password: password?
+    smtp_tls: bool?
+    smtp_from: email?
+    smtp_to: email?

@@ -1,0 +1,47 @@
+configuration:
+  hosts:
+    name: ESXi hosts
+    description: >-
+      One entry per host. "address" is its hostname or IP. Leave the password
+      empty to use the app's own SSH key, which the Setup page shows you.
+  poll_interval_minutes:
+    name: Poll interval
+    description: >-
+      Minutes between collections. SMART values change slowly, so 60 is plenty;
+      every poll is a handful of read-only SSH commands per host.
+  retention_raw_days:
+    name: Keep hourly history
+    description: >-
+      After this many days each day is folded into a single row, which is kept
+      forever. Trends stay visible while the database stays small.
+  command_timeout_seconds:
+    name: Command timeout
+    description: How long a single command on a host may take before it is given up on.
+  language:
+    name: Language
+    description: Default language of the panel; each browser can override it.
+  log_level:
+    name: Log level
+    description: How much detail to write to the app log.
+  thresholds:
+    name: Thresholds
+    description: >-
+      When a disk becomes a warning or critical. Sector and error counters are
+      not configurable: those are always a problem.
+  disk_overrides:
+    name: Per-disk settings
+    description: >-
+      Rename a disk, ignore it, or give it its own thresholds. "match" is a
+      serial number, device id or model, and may contain * and ?.
+  mqtt:
+    name: MQTT
+    description: >-
+      Home Assistant entities. With the Mosquitto broker installed nothing needs
+      to be filled in here; the Supervisor hands over the connection. Set a host
+      only for a broker outside Home Assistant.
+  alerts:
+    name: Notifications from the app
+    description: >-
+      Sends notifications itself (ntfy, Gotify or email) when a disk changes
+      status. Inside Home Assistant it is usually better to leave this off and
+      automate on the entities instead.
