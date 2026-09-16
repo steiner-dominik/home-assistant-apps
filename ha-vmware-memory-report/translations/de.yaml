@@ -21,9 +21,29 @@ configuration:
   report_days:
     name: Berichtstage
     description: Wie viele Tage der Bericht zeigt.
+  interval_minutes:
+    name: Sammelintervall (Minuten)
+    description: >-
+      Wie oft gesammelt wird. Jeder Lauf liest alle 20-Sekunden-Messwerte seines Fensters, daher
+      findet ein 15-Minuten-Intervall keine Spitzen, die ein stündlicher Lauf übersieht - es gibt
+      eine feinere zeitliche Auflösung und verliert weniger Daten, wenn ein Lauf fehlschlägt.
+      Für eine Sizing-Entscheidung reichen 60 Minuten.
+  candidate_pct:
+    name: Tiering-Kandidat (% aktiv von belegt)
+    description: >-
+      Die Entscheidungsgröße. Ein Cluster, dessen aktiver Speicher höchstens diesen Anteil des
+      tatsächlich hinterlegten Speichers erreicht, ist ein Kandidat: Der Rest ist kalt und kann
+      von einem NVMe-Tier aufgenommen werden.
+  tier_ratio:
+    name: Verhältnis DRAM:NVMe fürs Sizing
+    description: >-
+      Größe des NVMe-Tiers je Einheit DRAM für die Sizing-Tabelle. 1.0 ist das unterstützte
+      Maximum von 1:1.
   threshold_pct:
-    name: Tiering-Richtwert (% des DRAM)
-    description: Der aktive Speicher eines Hosts sollte höchstens diesen Anteil des DRAM erreichen. Broadcom empfiehlt 50.
+    name: Grenze heißer Anteil (% des DRAM)
+    description: >-
+      Machbarkeit, nicht Nutzen: Der heiße Arbeitssatz muss ins DRAM passen. Broadcom empfiehlt für
+      ein 1:1-Tier 50. Das begrenzt Tiering auf vorhandenen Hosts und dimensioniert das DRAM neuer.
   stretched_cluster:
     name: Alle Cluster sind Stretched Cluster
     description: Nach einem Standortausfall bleibt die Hälfte des Clusters, daher wird gegen 50 % statt N+1 geprüft.
@@ -58,7 +78,7 @@ configuration:
       Kleinbuchstaben, Ziffern und Unterstriche.
   language:
     name: Sprache
-    description: Standardsprache des Panels; jeder Browser kann umschalten. Der Bericht selbst ist englisch.
+    description: Standardsprache von Panel und Bericht; jeder Browser kann umschalten.
   log_level:
     name: Protokollstufe
     description: Wie detailliert das App-Protokoll ist.

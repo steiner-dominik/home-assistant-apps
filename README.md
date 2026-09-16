@@ -31,7 +31,7 @@ maintained by Dominik Steiner.
 | [**🌡 Shelly Add-on Temperature Debug**](ha-shelly-add-on-temperature-debug/) | Troubleshooting view for DS18B20/DHT22 sensors on Shelly Sensor Add-ons: live status with failure guidance, wiggle test, history charts, CSV export, optional Prometheus metrics. |
 | [**🏊 Shelly Pool Control**](ha-shelly-pool-control/) | Solar pool heating panel for a Shelly 2PM/1PM controller: monitoring, settings, history charts, notifications and backups — the safety-critical control loop runs on the Shelly itself. |
 | [**📷 UniFi Protect Timelapse**](ha-unifi-protect-timelapse/) | Timelapse capture and archive watchdog for a UniFi Protect camera: live view, archive browser with gap detection, MP4/ZIP export, and health entities for camera reachability and archive freshness. |
-| [**🧠 VMware Memory Tiering Report**](ha-vmware-memory-report/) | Hourly memory collector for VMware vCenter with a trend report that shows whether NVMe memory tiering fits your clusters: tiering candidates, failover headroom, oversized VMs, and health entities. |
+| [**🧠 VMware Memory Tiering Report**](ha-vmware-memory-report/) | Memory collector for VMware vCenter with a trend report that shows whether NVMe memory tiering pays off: clusters ranked by active vs. consumed memory, the DRAM you would save, failover headroom, oversized VMs, and health entities. |
 
 ## 🧩 How this repository works
 

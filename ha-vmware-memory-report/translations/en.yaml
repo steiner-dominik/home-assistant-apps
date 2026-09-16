@@ -21,9 +21,26 @@ configuration:
   report_days:
     name: Report days
     description: Days of history shown in the report.
+  interval_minutes:
+    name: Collection interval (minutes)
+    description: >-
+      How often to collect. Every run reads all 20-second samples of its window, so 15 minutes
+      does not find peaks an hourly run misses - it gives a finer time resolution and loses less
+      data when a single run fails. 60 is enough for a sizing decision.
+  candidate_pct:
+    name: Tiering candidate (% active of consumed)
+    description: >-
+      The decision metric. A cluster whose active memory stays at or below this share of the
+      memory its hosts actually back is a candidate: the rest is cold and an NVMe tier can absorb it.
+  tier_ratio:
+    name: DRAM:NVMe ratio for sizing
+    description: >-
+      NVMe tier size per unit of DRAM used for the sizing table. 1.0 is the supported 1:1 maximum.
   threshold_pct:
-    name: Tiering guidance (% of DRAM)
-    description: Host active memory should stay at or below this share of DRAM. Broadcom's guidance is 50.
+    name: Hot-set limit (% of DRAM)
+    description: >-
+      Feasibility, not benefit: the hot working set has to stay in DRAM. Broadcom's guidance for a
+      1:1 tier is 50. It limits tiering on hosts you already own and sizes the DRAM of new ones.
   stretched_cluster:
     name: All clusters are stretched
     description: After a site failure half of the cluster remains, so failover headroom is checked against 50% instead of N+1.
@@ -58,7 +75,7 @@ configuration:
       Lowercase letters, digits and underscores.
   language:
     name: Language
-    description: Default panel language; each browser can switch it. The report itself is English.
+    description: Default language of the panel and the report; each browser can switch it.
   log_level:
     name: Log level
     description: How much detail to write to the app log.

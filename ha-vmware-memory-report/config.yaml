@@ -1,6 +1,6 @@
 name: "VMware Memory Tiering Report"
-description: "Hourly VMware memory collector with a trend report that shows whether NVMe memory tiering fits your clusters, plus health entities"
-version: "26.09.01"
+description: "VMware memory collector with a trend report that shows whether NVMe memory tiering pays off for your clusters, plus health entities"
+version: "26.09.02"
 slug: "vmware_memory_report"
 url: "https://github.com/steiner-dominik/vmware-memory-report"
 # Prebuilt multi-arch image, published from the application source repo
@@ -33,7 +33,10 @@ options:
   verify_tls: true
   ca_file: ""
   report_days: 30
+  interval_minutes: 60
+  candidate_pct: 40
   threshold_pct: 50
+  tier_ratio: 1.0
   stretched_cluster: false
   stretched_clusters: []
   cold_pct: 40
@@ -54,7 +57,10 @@ schema:
   verify_tls: bool
   ca_file: str?
   report_days: int(1,400)
+  interval_minutes: list(15|30|60)
+  candidate_pct: float(1,100)
   threshold_pct: float(1,100)
+  tier_ratio: float(0.1,8)
   stretched_cluster: bool
   stretched_clusters:
     - str
