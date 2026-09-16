@@ -1,6 +1,6 @@
 name: "VMware Memory Tiering Report"
 description: "VMware memory collector with a trend report that shows whether NVMe memory tiering pays off for your clusters, plus health entities"
-version: "26.09.04"
+version: "26.09.05"
 slug: "vmware_memory_report"
 url: "https://github.com/steiner-dominik/vmware-memory-report"
 # Prebuilt multi-arch image, published from the application source repo

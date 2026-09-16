@@ -1,4 +1,12 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.05
+
+- **Fixes the blank report in 26.09.04.** Removing the failover section left two
+  references to elements that went with it; in a browser those are `null`, and the
+  resulting error happened before the first render, so every card stayed empty.
+- Tier counter discovery now scans every counter group, not only `mem.*`, and the log
+  reports how many counters the vCenter offered when none match.
+
 ## 26.09.04
 
 - **The "cluster failover headroom" section is gone.** It compared consumed memory with
