@@ -84,6 +84,7 @@ collection fails with a certificate error. Either:
 | `interval_minutes` | How often to collect: 60, 30 or 15. A shorter interval gives a finer time resolution and loses less data when a run fails; it does not find peaks an hourly run misses |
 | `candidate_pct` | The decision metric: a cluster is a tiering candidate at or below this % of active over consumed memory |
 | `threshold_pct` | Feasibility: the hot working set has to stay at or below this % of DRAM |
+| `ram_bound_pct`, `cpu_idle_pct` | A host is "out of memory but not out of CPU" when consumed memory reaches `ram_bound_pct` of DRAM while CPU P95 stays at or below `cpu_idle_pct`. Those hosts gain capacity from a tier rather than from another socket |
 | `tier_ratio` | Where the report's NVMe tier switch starts: 1.0 = a tier the size of DRAM (1:1). Readers can simulate 50%, 100%, 200% and 400% in the report |
 | `stretched_cluster` | All clusters are stretched: after a site failure 50% of the cluster remains, instead of N+1 |
 | `stretched_clusters` | Or name the stretched clusters individually |

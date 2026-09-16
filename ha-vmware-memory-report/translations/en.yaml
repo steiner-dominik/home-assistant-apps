@@ -41,6 +41,16 @@ configuration:
     description: >-
       Feasibility, not benefit: the hot working set has to stay in DRAM. Broadcom's guidance for a
       1:1 tier is 50. It limits tiering on hosts you already own and sizes the DRAM of new ones.
+  ram_bound_pct:
+    name: Memory bound at (% of DRAM)
+    description: >-
+      A host counts as out of memory when its consumed memory reaches this share of DRAM.
+      Together with the CPU threshold it finds hosts that need a tier, not another socket.
+  cpu_idle_pct:
+    name: CPU still idle below (%)
+    description: >-
+      ...and its CPU P95 stays at or below this. A host that is memory bound while its CPUs
+      idle gains capacity from an NVMe tier instead of from a new host.
   stretched_cluster:
     name: All clusters are stretched
     description: After a site failure half of the cluster remains, so failover headroom is checked against 50% instead of N+1.

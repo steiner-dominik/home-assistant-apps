@@ -44,6 +44,17 @@ configuration:
     description: >-
       Machbarkeit, nicht Nutzen: Der heiße Arbeitssatz muss ins DRAM passen. Broadcom empfiehlt für
       ein 1:1-Tier 50. Das begrenzt Tiering auf vorhandenen Hosts und dimensioniert das DRAM neuer.
+  ram_bound_pct:
+    name: Speichergebunden ab (% des DRAM)
+    description: >-
+      Ein Host gilt als am Speicherlimit, wenn sein belegter Speicher diesen Anteil des DRAM
+      erreicht. Zusammen mit der CPU-Schwelle findet das Hosts, die ein Tier brauchen und
+      keinen weiteren Sockel.
+  cpu_idle_pct:
+    name: CPU noch im Leerlauf unter (%)
+    description: >-
+      ... und der CPU-P95 höchstens diesen Wert erreicht. Ein Host am Speicherlimit mit
+      unausgelasteten CPUs gewinnt Kapazität durch ein NVMe-Tier statt durch einen neuen Host.
   stretched_cluster:
     name: Alle Cluster sind Stretched Cluster
     description: Nach einem Standortausfall bleibt die Hälfte des Clusters, daher wird gegen 50 % statt N+1 geprüft.

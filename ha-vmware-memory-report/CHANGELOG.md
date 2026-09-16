@@ -1,4 +1,18 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.06
+
+- **Host CPU is collected**, and with it the case where a tier replaces a purchase: a host
+  whose memory is full while its CPUs idle gains capacity from an NVMe tier instead of from
+  another socket. New figure "Tier instead of a new host", a badge in the host table, and
+  CPU P95 and core columns. Two new options set the thresholds: `ram_bound_pct` (70) and
+  `cpu_idle_pct` (50).
+- A host that is memory bound *and* CPU bound is correctly not flagged - that one needs a
+  host, not a tier.
+- The CPU counter is optional: a vCenter that does not publish it still produces the full
+  memory report, with the CPU columns left empty.
+
+Monthly host CSV files gain six columns and are widened in place on the first run.
+
 ## 26.09.05
 
 - **Fixes the blank report in 26.09.04.** Removing the failover section left two
