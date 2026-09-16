@@ -1,4 +1,17 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.07
+
+- **Memory tier usage is read where vSphere publishes it.** vCenter 9.x offers
+  `mem.tier.consumed.latest` per tier; vCenter 8.0 U3 offers no tiering counter at all.
+  Where it exists, "cold in DRAM" and "on NVMe" are measured rather than derived from
+  consumed memory and DRAM size. Older vCenters keep the estimate, which is close.
+- **The NVMe tier switch starts from your hardware.** Hosts that already run a tier know
+  their own DRAM:NVMe ratio, so the switch defaults to it instead of to `tier_ratio` -
+  a host with 128 GB DRAM and 512 GB NVMe now sizes at 400%, not 100%.
+- New host CSV columns `TierDramMB` and `TierNvmeMB`, empty before vSphere 9.
+
+Tested against vCenter 8.0.3 and 9.1.1 with both the Python and PowerShell editions.
+
 ## 26.09.06
 
 - **Host CPU is collected**, and with it the case where a tier replaces a purchase: a host

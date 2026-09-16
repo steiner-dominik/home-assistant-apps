@@ -115,6 +115,12 @@ Assistant restarts.
 | `sensor.memtier_active_of_consumed` | Active over consumed memory across all hosts — the tiering decision metric |
 | `sensor.memtier_cold_in_dram` | Cold memory still held in DRAM, in MB — what a tier would move |
 
+How much memory each tier actually holds is read from `mem.tier.consumed.latest`, which
+vCenter 9.x publishes and vCenter 8.0 U3 does not. On 8.0 U3 the split between DRAM and
+NVMe is derived from consumed memory and the tier sizes instead, which is close but not
+measured. Per-tier free space and per-VM tier residency (`vsish`, `memstats`) are ESXi
+shell tools with no API, so they are out of reach without SSH to every host.
+
 `sensor.memtier_status` also carries a `tier_counters` attribute: the per-tier performance
 counters this vCenter publishes, if any. Tier *sizes* are always read; current tier *usage*
 depends on those counters existing, and their names have moved between vSphere releases.
