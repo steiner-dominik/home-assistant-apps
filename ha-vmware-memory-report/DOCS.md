@@ -59,6 +59,10 @@ collection fails with a certificate error. Either:
   headroom (N+1 and stretched clusters), a weekday × hour heatmap and per-VM sizing.
   It is a single HTML file and can be downloaded from the **Data** tab to share it.
   It is available in English and German; the switch is in the report itself.
+  It opens in **Simple** view - a verdict, four figures and two tables. Switch to
+  **Everything** for the charts, the heatmap and the per-host and per-VM tables.
+  The **NVMe tier** switch simulates a tier of 50%, 100% (1:1), 200% or 400% of DRAM
+  and moves the sizing numbers with it.
 - **Status** — the last collection per vCenter, the next run, the busiest host
   and the app log. **Collect now** starts a run immediately (at most every
   5 minutes).
@@ -80,7 +84,7 @@ collection fails with a certificate error. Either:
 | `interval_minutes` | How often to collect: 60, 30 or 15. A shorter interval gives a finer time resolution and loses less data when a run fails; it does not find peaks an hourly run misses |
 | `candidate_pct` | The decision metric: a cluster is a tiering candidate at or below this % of active over consumed memory |
 | `threshold_pct` | Feasibility: the hot working set has to stay at or below this % of DRAM |
-| `tier_ratio` | NVMe tier size per unit of DRAM used for the sizing table (1.0 = the supported 1:1 maximum) |
+| `tier_ratio` | Where the report's NVMe tier switch starts: 1.0 = a tier the size of DRAM (1:1). Readers can simulate 50%, 100%, 200% and 400% in the report |
 | `stretched_cluster` | All clusters are stretched: after a site failure 50% of the cluster remains, instead of N+1 |
 | `stretched_clusters` | Or name the stretched clusters individually |
 | `cold_pct`, `hot_pct` | Per-VM sizing hints: worst-day P95 active memory as % of configured memory |

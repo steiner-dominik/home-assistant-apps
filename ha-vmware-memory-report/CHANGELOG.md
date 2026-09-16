@@ -1,4 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.03
+
+- **The report opens in Simple view**: a one-line verdict ("Strong candidate - 90% of
+  the memory your hosts back is cold"), four figures and two tables. Everything else -
+  host and cluster charts, failover headroom, the heatmap, the per-host and per-VM
+  tables - moves behind an **Everything** switch, remembered per browser.
+- **Simulate the NVMe tier size** in the report: 50%, 100% (the 1:1 default), 200% or
+  400% of DRAM, the way it is configured on the host. It moves the sizing numbers only;
+  whether a cluster is a candidate does not depend on the ratio. The `tier_ratio` option
+  sets where the switch starts.
+
 ## 26.09.02
 
 - **Active vs. consumed memory is now the headline of the report** - the metric the
