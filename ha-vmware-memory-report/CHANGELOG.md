@@ -1,4 +1,25 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.04
+
+- **The "cluster failover headroom" section is gone.** It compared consumed memory with
+  the capacity surviving a failure - ordinary HA admission control, which vCenter answers
+  better and which says nothing about tiering.
+- **What replaced it is the tiering-specific question**: after a host or site is lost, the
+  same hot working set lands on fewer hosts, so it has to fit less DRAM. A cluster sized
+  right at the 50% limit crosses it the moment a host dies. Now a badge and a figure.
+- **Stretched clusters are a sizing input**, not a section. The new "failure to survive"
+  switch decides whether sizing reserves capacity for a failure; it defaults to none.
+- **The heatmap now shows active over consumed memory** - when the working set is hottest,
+  which is when a tier is under the most pressure.
+- **DRAM is sized in DIMMs**: rounded up to a population you can order (16 to 256 GB
+  modules, up to 48 per host) and named, e.g. `20 x 32 GB`.
+- **The candidate bars show a "DRAM after tiering" line** - the active bar has to sit under it.
+- **Memory tier counters are discovered** and listed on `sensor.memtier_status` as
+  `tier_counters`, so a later release can report how much each host currently keeps on NVMe.
+
+Monthly CSV files gain a `TierCounters` column. Existing files are widened in place on the
+first run after the update; nothing has to be moved away.
+
 ## 26.09.03
 
 - **The report opens in Simple view**: a one-line verdict ("Strong candidate - 90% of

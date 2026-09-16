@@ -114,6 +114,10 @@ Assistant restarts.
 | `sensor.memtier_active_of_consumed` | Active over consumed memory across all hosts — the tiering decision metric |
 | `sensor.memtier_cold_in_dram` | Cold memory still held in DRAM, in MB — what a tier would move |
 
+`sensor.memtier_status` also carries a `tier_counters` attribute: the per-tier performance
+counters this vCenter publishes, if any. Tier *sizes* are always read; current tier *usage*
+depends on those counters existing, and their names have moved between vSphere releases.
+
 An automation that tells you when collection stops working:
 
 ```yaml
