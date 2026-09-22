@@ -1,4 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.22.1
+
+### Fixed
+
+- **Data written/read was far too low on Intel/Solidigm SATA SSDs.**
+  `esxcli storage core device smart get` uses one fixed attribute name for
+  every vendor, but Intel/Solidigm data-center SATA SSDs (model codes
+  starting `SSDSC`, e.g. the D3-S4610) count that attribute in 32 MiB units
+  instead of sectors, undercounting written/read data by a factor of 65536.
+  A drive that actually wrote ~401 TB over 9 years showed 6.1 GB.
+
 ## 26.09.22
 
 ### Fixed
