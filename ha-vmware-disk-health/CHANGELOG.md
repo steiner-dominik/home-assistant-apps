@@ -1,4 +1,13 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.22.3
+
+### Added
+
+- **The disk details pane now also shows esxcli's raw device properties**
+  (`esxcli storage core device list`), alongside the existing raw SMART data —
+  useful for checking exactly what ESXi reports for a drive without SSH'ing
+  into the host.
+
 ## 26.09.22.2
 
 ### Fixed
