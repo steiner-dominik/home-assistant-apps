@@ -1,4 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.22
+
+### Fixed
+
+- **Disks without a serial number could not be told apart either.** The
+  previous release named devices "<model> <serial>", but drives that report
+  their own WWN get `naa.*`/`eui.*` device ids from ESXi instead of one that
+  encodes a serial — which esxcli alone cannot recover without the smartctl
+  VIB. Those devices fell back to the bare model name and collided again. They
+  now get a short id suffix instead, both in Home Assistant and the web UI.
+
 ## 26.09.18
 
 ### Fixed
