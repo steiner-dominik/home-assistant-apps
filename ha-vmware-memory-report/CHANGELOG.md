@@ -1,4 +1,18 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.09
+
+- **Usable extra memory keeps the hot set within 50% of DRAM.** Extra memory brings more hot
+  pages with it, so the retrofit figure is now capped by the hot set as well as by CPU.
+- **Standalone hosts are sized**, each as its own group of one. Before, a homelab of standalone
+  hosts showed *No workload* for new servers next to a *Strong candidate* verdict.
+- **The New servers badge follows the clusters that have a saving**, so one hot cluster no longer
+  turns a real saving into *Little to gain*. A saving of 0 (heavily overcommitted hosts) is
+  *Little to gain* instead of *Full saving*.
+- Memory used is judged against the DRAM and NVMe tier each host had at the time.
+- Fixes: `sensor.memtier_cold_in_dram` and `sensor.memtier_active_of_consumed` showed *unknown*
+  instead of 0; consecutive collections could count the same samples twice when a query ran
+  late; a report rebuild at startup could collide with the first collection.
+
 ## 26.09.08
 
 - **Three views: Summary, Simple, Expert.** *Summary* is the page for the customer: the
