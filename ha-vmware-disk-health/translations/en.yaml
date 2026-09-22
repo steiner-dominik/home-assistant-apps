@@ -26,8 +26,10 @@ configuration:
   thresholds:
     name: Thresholds
     description: >-
-      When a disk becomes a warning or critical. Sector and error counters are
-      not configurable: those are always a problem.
+      When a disk becomes a warning or critical. "ssd_reallocated_warn_count"
+      (default 10) is how many reallocated sectors an SSD may have before a
+      stable count warns; any increase always does. Other sector and error
+      counters are not configurable: those are always a problem.
   disk_overrides:
     name: Per-disk settings
     description: >-

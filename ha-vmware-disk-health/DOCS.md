@@ -74,12 +74,22 @@ of SSH commands per host.
 | `temp_ssd_warn_c` / `temp_ssd_crit_c` | 60 / 70 °C |
 | `temp_nvme_warn_c` / `temp_nvme_crit_c` | 70 / 80 °C |
 | `use_drive_temp_limit` | `true` — never warn later than the drive's own limit |
+| `ssd_reallocated_warn_count` | 10 — see below |
 
 Sector and error counters are not configurable. A pending sector is a warning
 when first seen and critical when the drive still reports it at the next poll
 (drives clear these again by themselves); an uncorrectable sector is always
-critical, a reallocated sector a warning, and a counter that grows within a
-week is critical.
+critical, and a counter that grows within a week is critical.
+
+Reallocated sectors depend on the drive type. On a **hard disk** any reallocated
+sector is a warning and an increase is critical. **SSDs** retire worn blocks as
+part of normal operation, so a small count that stays put is fine: an SSD warns
+once it reaches `ssd_reallocated_warn_count` (default 10), or when the count grows
+within a week.
+
+A disk that **disappears** from a host that is otherwise reachable (a dead drive
+often simply drops off the bus) is recorded as an event, notified like a
+warning, and its entities switch to *unknown* with the problem sensor on.
 
 **Per disk** you can rename a drive, ignore it, or change its thresholds:
 
@@ -101,10 +111,14 @@ every disk becomes a **device** under the MQTT integration, linked to its host:
 | `sensor.<disk>_status` | ok / warning / critical / unknown, with the findings as attributes |
 | `binary_sensor.<disk>_problem` | on for warning and critical — the one to automate on |
 | `sensor.<disk>_temperature` | °C |
-| `sensor.<disk>_life_remaining`, `…_endurance_used` | % (SSD and NVMe) |
+| `sensor.<disk>_life_remaining`, `…_endurance_used` | % (SSD and NVMe), as reported by the drive |
+| `sensor.<disk>_estimated_life_remaining` | % — only for drives that report no wear; see below |
 | `sensor.<disk>_data_written`, `…_data_read` | bytes, as a total |
 | `sensor.<disk>_power_on_time`, `…_power_cycles`, `…_unsafe_shutdowns` | |
 | `sensor.<disk>_reallocated_sectors`, `…_pending_sectors`, `…_crc_errors`, `…_media_errors`, … | error counters the drive reports |
+
+The status sensor's attributes also carry the disk's **vSAN tier** (`cache` or
+`capacity`) and disk group, and its rated endurance.
 
 Each host also gets a device with **Reachable**, **Last successful poll**,
 **Disks** and **Disks with problems**.
@@ -146,9 +160,25 @@ turn on `alerts` in the configuration.
 smartctl is **optional**; it is used when present and never installed by the
 app. It cannot read NVMe drives on ESXi, so those always come from `esxcli`.
 
+| `esxcli vsan storage list` | with vSAN | cache or capacity tier and disk group of each disk |
+
 Some drives report less than others. A Crucial MX500, for example, tells ESXi
-nothing about its wear, so remaining life only shows up there with smartctl
-installed.
+nothing about its wear, and on Intel/Solidigm DC SATA SSDs the wear value esxcli
+shows is meaningless (stuck at 100).
+
+### Estimated wear
+
+For such drives the app **estimates** remaining life from data written and the
+vendor's rated endurance (TBW) — shown with "est.", a hatched bar and its own
+entity, never mixed up with a value the drive reported. It is approximate:
+TBW is a warranty figure for a standard workload, and real NAND wear depends on
+how the drive is written to. An estimate can warn when it drops below
+`life_remaining_warn_pct`, but never makes a disk critical.
+
+The table of ratings is deliberately small (Intel DC S3500/S3510/S3520/S3700/S3710,
+Crucial MX500). ESXi cuts model names to 16 characters, which can hide the
+generation (`INTEL SSDSC2BA40` is an S3700 *or* an S3710); the lower rating is
+used then.
 
 ## Troubleshooting
 

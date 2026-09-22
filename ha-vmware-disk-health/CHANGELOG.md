@@ -1,4 +1,46 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.22.4
+
+### Added
+
+- **vSAN tier per disk.** Disks claimed by vSAN (OSA) show a *vSAN cache* or
+  *vSAN capacity* badge and their disk group, from `esxcli vsan storage list`
+  (read-only; hosts without vSAN simply skip it). Also in the entity
+  attributes and as `vmware_disk_health_disk_vsan_info` in Prometheus.
+- **Estimated wear for drives that report none**, from data written against
+  the vendor's rated endurance (TBW): Intel DC S3500/S3510/S3520/S3700/S3710
+  and Crucial MX500. Clearly marked as an estimate (hatched bar, "est.", its own
+  *Estimated life remaining* entity), with a projected wear-out date. It can
+  raise a warning, never a critical status.
+- **A disk that disappears from its host is now an event and a notification**,
+  and its entities turn *unknown* with the problem sensor on. Its return is
+  reported too.
+
+### Changed
+
+- **SSDs no longer warn forever about a few reallocated sectors.** Retiring
+  worn blocks is normal for an SSD: a stable count below
+  `ssd_reallocated_warn_count` (new option, default 10) is OK, and any
+  increase within a week still warns. Hard disks are unchanged.
+
+### Fixed
+
+- **"Data written per day" showed one huge spike after updating to 26.09.22.1**
+  on Intel/Solidigm SSDs, and would have turned into a wildly wrong write rate:
+  history recorded in the old unit is now converted on startup, and steps no
+  drive could physically write are ignored.
+- Two instances on the same MQTT broker (for example home and lab) kept
+  disconnecting each other: both used the same client id inside Docker.
+- An unreachable host reported 0 disks and 0 problem disks and lost its
+  "last successful poll"; these are now unknown / kept.
+- Disks excluded after they were first seen no longer show up as missing.
+- SATA SSDs behind a SAS controller were labelled as SAS drives.
+- History charts of error counters showed repeated axis labels ("1, 1, 1").
+- The Gotify token is sent as a header instead of in the URL; SMTP on port
+  465 uses implicit TLS.
+- The database is safe against concurrent access from the scheduler and the
+  web UI, and the SSH key file is never briefly readable by other users.
+
 ## 26.09.22.3
 
 ### Added
