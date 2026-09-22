@@ -1,4 +1,17 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.22.2
+
+### Fixed
+
+- **Life remaining showed 100% on Intel/Solidigm SSDs no matter how worn
+  they actually were.** The same attribute aliasing behind the write/read
+  fix also stuck the wear-level value at 100 on those drives — confirmed
+  against a live host where three drives with petabytes written all showed
+  100%, while Dell's own out-of-band monitoring (iDRAC) reported real wear
+  (68-88% remaining) for the same disks. There is no way to recover the true
+  percentage from esxcli alone, so it now shows as unknown instead of a
+  misleading 0% used.
+
 ## 26.09.22.1
 
 ### Fixed
