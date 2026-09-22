@@ -1,4 +1,23 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.09.08
+
+- **Three views: Summary, Simple, Expert.** *Summary* is the page for the customer: the
+  verdict, the two buying decisions and where the memory goes. *Expert* replaces
+  "Everything" and adds a data-quality panel.
+- **One verdict per buying decision.** *New servers* (less DRAM plus an NVMe tier) and
+  *Existing hosts* (add an NVMe tier) each get their own verdict and headline number.
+- **Half-DRAM test:** active P95 ÷ assigned at or below 25% (with a 1:1 tier) means DRAM can
+  shrink to half of what is assigned.
+- **Conservative DRAM saving**, sized on assigned memory; the measured figure is shown next to
+  it. Hosts that already run a tier are left out of the saving.
+- **Extra memory is gated by CPU**: only hosts whose memory is full while their sustained CPU
+  idles count, capped at what that CPU can run. `cpu_idle_pct` now compares against sustained
+  CPU (P95 of the interval averages) instead of the P95 of the peaks.
+- New sections: where the memory goes, the three questions per cluster, a host map of memory
+  used against CPU, and data quality.
+- Fixes: empty "Support:" in the report header, raw `noTiering` in the host table, vSphere
+  Pods filling the "Hot" VM list.
+
 ## 26.09.07
 
 - **Memory tier usage is read where vSphere publishes it.** vCenter 9.x offers

@@ -53,7 +53,7 @@ configuration:
   cpu_idle_pct:
     name: CPU noch im Leerlauf unter (%)
     description: >-
-      ... und der CPU-P95 höchstens diesen Wert erreicht. Ein Host am Speicherlimit mit
+      ... und die CPU-Dauerlast (P95 der Intervall-Durchschnitte) höchstens diesen Wert erreicht. Ein Host am Speicherlimit mit
       unausgelasteten CPUs gewinnt Kapazität durch ein NVMe-Tier statt durch einen neuen Host.
   stretched_cluster:
     name: Alle Cluster sind Stretched Cluster

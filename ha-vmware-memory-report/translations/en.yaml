@@ -49,7 +49,7 @@ configuration:
   cpu_idle_pct:
     name: CPU still idle below (%)
     description: >-
-      ...and its CPU P95 stays at or below this. A host that is memory bound while its CPUs
+      ...and its sustained CPU (P95 of the interval averages) stays at or below this. A host that is memory bound while its CPUs
       idle gains capacity from an NVMe tier instead of from a new host.
   stretched_cluster:
     name: All clusters are stretched
