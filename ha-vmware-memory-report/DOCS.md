@@ -55,8 +55,9 @@ collection fails with a certificate error. Either:
 ## The panel
 
 - **Report** — the trend report: memory tiering candidates per cluster, the DRAM
-  you would save or the extra memory you would gain, host charts, cluster failover
-  headroom (N+1 and stretched clusters), a weekday × hour heatmap and per-VM sizing.
+  you would save or the extra memory you would gain, active ÷ consumed over time per
+  cluster and per host, whether the hot set survives a host or site failure, a
+  weekday × hour heatmap and per-VM sizing.
   It is a single HTML file and can be downloaded from the **Data** tab to share it.
   It is available in English and German; the switch is in the report itself.
   Three views: **Summary** (two verdicts and one picture, for the customer), **Simple** (the

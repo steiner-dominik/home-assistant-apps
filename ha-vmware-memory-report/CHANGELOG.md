@@ -1,4 +1,10 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.10.01
+
+- **Active ÷ consumed over time, per cluster**, below the candidate bars in *Simple* and
+  *Expert*, with the 40% candidate line. VMs moving between hosts of a cluster cancel out there;
+  the host charts in *Expert* stay, and show a host that was added or replaced.
+
 ## 26.09.09
 
 - **Usable extra memory keeps the hot set within 50% of DRAM.** Extra memory brings more hot
