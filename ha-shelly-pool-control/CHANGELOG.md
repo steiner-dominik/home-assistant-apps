@@ -1,4 +1,14 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.11.06.1
+
+- **Security and dependency updates**: the panel now runs on Python 3.14
+  with current releases of every server library (FastAPI, uvicorn,
+  SQLAlchemy, …), and the dashboard is built with the current Vite and
+  Svelte, which fixes the known vulnerabilities in the previous build
+  tooling.
+- Dependency updates are now grouped, so future updates arrive as one
+  release instead of many.
+
 ## 2026.07.19.1
 
 Initial release.

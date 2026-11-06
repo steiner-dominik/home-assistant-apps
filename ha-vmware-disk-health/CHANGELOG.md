@@ -1,4 +1,12 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.11.06.1
+
+### Changed
+
+- **Dependency updates**: current releases of FastAPI, uvicorn, pydantic,
+  cryptography, asyncssh and paho-mqtt, plus the latest Python 3.13 base
+  image with its security fixes. No functional changes.
+
 ## 26.09.22.4
 
 ### Added

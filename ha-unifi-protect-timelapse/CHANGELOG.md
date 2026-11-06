@@ -1,4 +1,12 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.11.01
+
+### Changed
+
+- **Base image updated to Alpine 3.24**, bringing ffmpeg 8.1 and the current
+  security fixes for every system package in the app. Timelapse rendering was
+  verified unchanged on the new ffmpeg.
+
 ## 26.09.07
 
 ### Fixed

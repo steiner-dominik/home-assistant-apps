@@ -1,4 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 26.11.01
+
+- **Security updates from the base image**: Python 3.14.10 and Alpine 3.24.4
+  (OpenSSL 3.5.9). No changes to the collector or the report.
+
 ## 26.10.01
 
 - **Active ÷ consumed over time, per cluster**, below the candidate bars in *Simple* and

@@ -1,4 +1,10 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.11.06.1
+
+- **Security update**: built with Go 1.27.3, which includes the Go
+  standard-library security fixes released since 2026.07.19.2.
+- No functional changes.
+
 ## 2026.07.19.2
 
 - New: the app icon follows the system's **dark/light theme** (favicon and
