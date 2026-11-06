@@ -1,4 +1,19 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.11.06.1
+
+- **Security updates for all dependencies**: the bundled libraries were
+  updated, closing 39 known vulnerabilities — most of them in the PDF
+  parser used to read invoice totals, plus the HTTP library and the CA
+  certificate bundle used to talk to Tesla.
+- **Automated dependency updates** for the application: new versions and
+  security fixes are now proposed automatically and tested before each
+  release, so updates like this one arrive sooner.
+- **Hardened image build**: every bundled package is verified against its
+  locked hash when the image is built.
+- **Token files are now written atomically**, so a restart or power loss
+  mid-write can no longer leave a truncated refresh token behind (which
+  meant reconnecting your Tesla account).
+
 ## 2026.07.19.1
 
 - **New versioning scheme**: releases are now fully date-based —
