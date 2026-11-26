@@ -1,4 +1,19 @@
 <!-- https://developers.home-assistant.io/docs/apps/presentation#keeping-a-changelog -->
+## 2026.11.26.1
+
+- **Several Tesla accounts in one instance**: add a partner's or a company
+  account under *Maintenance → Add another Tesla account*; every account
+  syncs into the same dashboard, with an account filter once there is more
+  than one. Existing installs keep working unchanged.
+- **Charging invoices from other networks** billed by Tesla (e.g. IONITY)
+  are now downloaded too.
+- **Faster dashboard**, and no more stale dashboard files after an update.
+- Old charging invoices that Tesla delivers as `INVOICESTATUS….XML` or
+  without a name are stored as normal `.pdf` invoices, and subscription
+  invoices dated `0001-01-01` get their real date from the PDF (they also
+  made the dashboard freeze for seconds).
+- Runtime updated to Python 3.15, plus library updates.
+
 ## 2026.11.06.1
 
 - **Security updates for all dependencies**: the bundled libraries were

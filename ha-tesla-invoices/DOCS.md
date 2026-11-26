@@ -44,6 +44,12 @@ option below (e.g. one generated with
 [Auth app for Tesla](https://apps.apple.com/us/app/auth-app-for-tesla/id1552058613));
 a token obtained via the in-app login always takes precedence once present.
 
+**Several Tesla accounts** (e.g. yours and your partner's) can be connected to
+one instance: use *Maintenance → Add another Tesla account* in the dashboard.
+Every account syncs into the same dashboard, and an account filter appears as
+soon as there is more than one. The `refresh_token` option only ever applies
+to the main account; added accounts keep their tokens in `/data` too.
+
 ## Configuration
 
 All options are **optional** — the app runs and you sign in from the dashboard.
